@@ -1,0 +1,24 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 193, in script
+    Yuki "You're not supposed to be here, human."
+Exception: Sayer 'Yuki' is not defined.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 193, in script
+    Yuki "You're not supposed to be here, human."
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 2586, in execute
+    Say.execute(self)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 583, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 472, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'Yuki' is not defined.
+
+macOS-15.5-arm64-arm-64bit arm64
+Ren'Py 8.3.7.25031702
+Game Jam 1.0
+Sun Jun  8 07:03:28 2025
