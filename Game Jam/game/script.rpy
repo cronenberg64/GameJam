@@ -3,28 +3,28 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define narrator = Character(None, kind=nvl)
-define Yuki = Character("Yuki-onna", color="#c8ffc8")
-define Sadako = Character("Sadako", color="#c8c8ff")
-define Oni = Character("Oni", color="#ffc8c8")
-define Kitsune = Character("Kitsune", color="#ffffc8")
+define YukiOnna = Character("Yuki-onna", color="#a8d8ea")
+define Sadako = Character("Sadako", color="#aa96da") 
+define Oni = Character("Oni", color="#ff9a9e")
+define Kitsune = Character("Kitsune", color="#feca57")
+define narrator = Character(None, color="#ffffff")
 
 # Character image definitions
-# image yuki neutral = "yuki_onna_default.png"
-# image yuki happy = "yuki_onna_default.png"
+# image yuki default = "yuki_onna_default.png"
 # image yuki scary = "yuki_onna_scary.png"
+# image yuki happy = "yuki_onna_happy.png"
 
-# image sadako neutral = "sadako_default.png"
-# image sadako shy = "sadako_default.png"
+# image sadako default = "sadako_default.png"
 # image sadako scary = "sadako_scary.png"
+# image sadako shy = "sadako_shy.png"
 
-# image oni neutral = "oni_default.png"
-# image oni playful = "oni_default.png"
+# image oni default = "oni_default.png"
 # image oni scary = "oni_scary.png"
+# image oni playful = "oni_playful.png"
 
-# image kitsune neutral = "kitsune_default.png"
-# image kitsune mischievous = "kitsune_default.png"
+# image kitsune default = "kitsune_default.png"
 # image kitsune scary = "kitsune_scary.png"
+# image kitsune mischievous = "kitsune_mischievous.png"
 
 # Background definitions
 image bg room = "bg_room.png"
@@ -38,9 +38,6 @@ image bg black = "#000000"
 # Variables to track choices
 default mountain_choice = ""
 default cabin_choice = ""
-
-# Define the quick_menu variable
-default quick_menu = True
 
 # Character affection levels
 default yuki_affection = 0
@@ -193,64 +190,64 @@ label yuki_route:
     narrator "You awaken in a strange cave, but something feels different about this place."
     narrator "The air is thick with magic, and the walls seem to pulse with an otherworldly energy."
     
-    Yuki "You're not supposed to be here, human."
-    Yuki "This is the demon world, and your presence here is... problematic."
+    YukiOnna "You're not supposed to be here, human."
+    YukiOnna "This is the demon world, and your presence here is... problematic."
     
     menu:
         "Where am I? What happened?":
             $ yuki_affection += 1
-            Yuki "The mountain's magic must have pulled you through a rift between worlds."
-            Yuki "Humans aren't meant to be here. The demon lords would execute you on sight."
+            YukiOnna "The mountain's magic must have pulled you through a rift between worlds."
+            YukiOnna "Humans aren't meant to be here. The demon lords would execute you on sight."
             
         "Are you going to turn me in?":
             $ yuki_affection -= 1
-            Yuki "That would be the proper thing to do..."
-            Yuki "But something about you makes me hesitate."
+            YukiOnna "That would be the proper thing to do..."
+            YukiOnna "But something about you makes me hesitate."
             
         "Can you help me get back?":
             $ yuki_affection += 2
-            Yuki "Help you? That would be treason against the demon lords."
-            Yuki "But... I've always been different from other demons."
+            YukiOnna "Help you? That would be treason against the demon lords."
+            YukiOnna "But... I've always been different from other demons."
     
     narrator "She looks around cautiously, as if expecting someone to appear at any moment."
     
     if yuki_affection < 0:
-        Yuki "Your fear and suspicion are clouding your judgment."
-        Yuki "But perhaps there's still time to change your fate."
+        YukiOnna "Your fear and suspicion are clouding your judgment."
+        YukiOnna "But perhaps there's still time to change your fate."
     else:
-        Yuki "I've been watching the human world for centuries, fascinated by its warmth and life."
-        Yuki "Maybe helping you is my chance to do something good."
+        YukiOnna "I've been watching the human world for centuries, fascinated by its warmth and life."
+        YukiOnna "Maybe helping you is my chance to do something good."
     
     menu:
         "I trust you to help me.":
             $ yuki_affection += 2
-            Yuki "Your trust... it's been so long since anyone trusted me."
-            Yuki "I'll help you find a way back, but we must be careful."
+            YukiOnna "Your trust... it's been so long since anyone trusted me."
+            YukiOnna "I'll help you find a way back, but we must be careful."
             
         "How do I know you won't betray me?":
             $ yuki_affection -= 1
-            Yuki "You don't. But what choice do you have?"
-            Yuki "The demon lords will find you eventually if you stay here alone."
+            YukiOnna "You don't. But what choice do you have?"
+            YukiOnna "The demon lords will find you eventually if you stay here alone."
             
         "What's in it for you?":
-            Yuki "Perhaps I'm tired of the eternal winter of the demon world."
-            Yuki "Or perhaps I just want to believe there's still good in this world."
+            YukiOnna "Perhaps I'm tired of the eternal winter of the demon world."
+            YukiOnna "Or perhaps I just want to believe there's still good in this world."
     
     narrator "She leads you through winding tunnels, her ice magic creating a path through the darkness."
     narrator "Suddenly, you hear voices echoing from ahead."
     
-    Yuki "The demon guards are patrolling. We need to hide."
+    YukiOnna "The demon guards are patrolling. We need to hide."
     
     menu:
         "Follow her lead":
             $ yuki_affection += 1
-            Yuki "Good. Trust is essential if we're to survive this."
+            YukiOnna "Good. Trust is essential if we're to survive this."
             
         "Try to run":
             $ yuki_affection -= 2
             show yuki scary
-            Yuki "Fool! You'll get us both killed!"
-            Yuki "The demon lords will show no mercy to traitors."
+            YukiOnna "Fool! You'll get us both killed!"
+            YukiOnna "The demon lords will show no mercy to traitors."
             narrator "Before you can react, Yuki-onna's hand strikes your temple."
             narrator "The last thing you see is her cold, determined expression as darkness claims you."
             jump yuki_death
@@ -506,8 +503,8 @@ label yuki_marriage:
     show yuki neutral
     with fade
     
-    Yuki "I've found a way to open a portal to your world."
-    Yuki "But I can't stay here anymore. The demon lords will hunt me for helping you."
+    YukiOnna "I've found a way to open a portal to your world."
+    YukiOnna "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
     narrator "She takes your hand, and together you step through the portal."
     narrator "The warmth of the human world welcomes you both."
@@ -521,13 +518,13 @@ label yuki_marriage:
     show yuki happy
     with fade
     
-    Yuki "It's been a year since we escaped the demon world."
-    Yuki "I never thought I'd find happiness in the human world, but you showed me the way."
+    YukiOnna "It's been a year since we escaped the demon world."
+    YukiOnna "I never thought I'd find happiness in the human world, but you showed me the way."
     
     narrator "She takes your hand, a gentle smile on her face."
     
-    Yuki "Will you spend the rest of your life with me?"
-    Yuki "I promise to keep you warm, even in the coldest winters."
+    YukiOnna "Will you spend the rest of your life with me?"
+    YukiOnna "I promise to keep you warm, even in the coldest winters."
     
     scene bg black
     with fade
@@ -542,14 +539,14 @@ label yuki_death:
     show yuki scary
     with fade
     
-    Yuki "I'm sorry, but I can't risk my position for someone who doesn't trust me."
-    Yuki "The demon lords will decide your fate."
+    YukiOnna "I'm sorry, but I can't risk my position for someone who doesn't trust me."
+    YukiOnna "The demon lords will decide your fate."
     
     narrator "She leads you deeper into the cave, her hand cold against yours."
     narrator "The temperature drops further as you enter a secluded chamber."
     
-    Yuki "This is where I bring those who disappoint me."
-    Yuki "Your warmth will sustain me through the long winter."
+    YukiOnna "This is where I bring those who disappoint me."
+    YukiOnna "Your warmth will sustain me through the long winter."
     
     narrator "Before you can react, her hand strikes your temple."
     narrator "The last thing you see is her cold, determined expression as darkness claims you."

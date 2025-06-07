@@ -2,17 +2,11 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 19: unexpected EOF while parsing
-    yuki scary
-          ^
+The label akagi_path is defined twice, at File "game/script.rpy", line 72:
+label akagi_path:
+and File "game/script.rpy", line 97:
+label akagi_path:
 
-File "game/script.rpy", line 21: unexpected EOF while parsing
-    yuki happy
-          ^
-
-File "game/script.rpy", line 23: unexpected EOF while parsing
-    yuki neutral
-          ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Sat Jun  7 17:52:19 2025
+Sat Jun  7 19:57:00 2025
