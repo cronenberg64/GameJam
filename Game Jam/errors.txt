@@ -1,0 +1,12 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+The label akagi_path is defined twice, at File "game/script.rpy", line 72:
+label akagi_path:
+and File "game/script.rpy", line 97:
+label akagi_path:
+
+
+Ren'Py Version: Ren'Py 8.3.7.25031702
+Sat Jun  7 19:57:00 2025
