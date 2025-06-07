@@ -9,12 +9,19 @@ define Sadako = Character("Sadako (佐渡子)", color="#c8c8ff")
 
 define Oni = Character("Oni (鬼)", color="#ffc8c8")
 
+define kitsune = Character("Kitsune (狐)", color="#ffc8c8")
+
 image YukiOnna default = "yuki_onna_default.png"
 image YukiOnna scary = "yuki_onna_scary.png"
+
 image Sadako default = "sadako_default.png"
 image Sadako scary = "sadako_scary.png"
+
 image Oni default = "oni_default.png"
 image Oni scary = "oni_scary.png"
+
+image kitsune default = "kitsune_default.png"
+image kitsune scary = "kitsune_scary.png"
 
 
 # The game starts here.
