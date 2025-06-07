@@ -263,8 +263,6 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
-
 style quick_button is default
 style quick_button_text is button_text
 
@@ -358,20 +356,72 @@ screen main_menu():
     frame:
         style "main_menu_frame"
 
-    ## The use statement includes another screen inside this one. The actual
-    ## contents of the main menu are in the navigation screen.
-    use navigation
+    # Central functional buttons matching the background's theme
+    # Adjusted positions: moved further right by 200 and lower by 50
+    textbutton "":
+        style "start_menu_button"
+        xpos 1011
+        ypos 385
+        xsize 500
+        ysize 80
+        action Start()
 
-    if gui.show_name:
+    textbutton "":
+        style "load_menu_button"
+        xpos 1081
+        ypos 500
+        xsize 500
+        ysize 80
+        action ShowMenu("load")
 
-        vbox:
-            style "main_menu_vbox"
+    textbutton "":
+        style "options_menu_button"
+        xpos 1072
+        ypos 555
+        xsize 500
+        ysize 80
+        action ShowMenu("preferences")
 
-            text "[config.name!t]":
-                style "main_menu_title"
+    textbutton "":
+        style "gallery_menu_button"
+        xpos 1072
+        ypos 610
+        xsize 500
+        ysize 80
+        action ShowMenu("gallery")
 
-            text "[config.version]":
-                style "main_menu_version"
+    textbutton "":
+        style "about_menu_button"
+        xpos 1073
+        ypos 665
+        xsize 500
+        ysize 80
+        action ShowMenu("about")
+
+    textbutton "":
+        style "help_menu_button"
+        xpos 1103
+        ypos 720
+        xsize 500
+        ysize 80
+        action ShowMenu("help")
+
+    textbutton "":
+        style "quit_menu_button"
+        xpos 1101
+        ypos 775
+        xsize 500
+        ysize 80
+        action Quit(confirm=True)
+
+    # Remove the display of the game title and version from the main menu
+    # if gui.show_name:
+    #     vbox:
+    #         style "main_menu_vbox"
+    #         text "[config.name!t]":
+    #             style "main_menu_title"
+    #         text "[config.version]":
+    #             style "main_menu_version"
 
 
 style main_menu_frame is empty
@@ -383,8 +433,6 @@ style main_menu_version is main_menu_text
 style main_menu_frame:
     xsize 420
     yfill True
-
-    background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -499,8 +547,6 @@ style return_button_text is navigation_button_text
 style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
-
-    background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
     xsize 420
@@ -1368,9 +1414,6 @@ style nvl_window:
     xfill True
     yfill True
 
-    background "gui/nvl.png"
-    padding gui.nvl_borders.padding
-
 style nvl_entry:
     xfill True
     ysize gui.nvl_height
@@ -1548,7 +1591,6 @@ style nvl_window:
 
 style main_menu_frame:
     variant "small"
-    background "gui/phone/overlay/main_menu.png"
 
 style game_menu_outer_frame:
     variant "small"
