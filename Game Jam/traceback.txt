@@ -1,6 +1,6 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <renpy.display.im.Image object ('bg_room.png') at 0x106292ee0>:
+While loading <renpy.display.im.Image object ('bg_room.png') at 0x106b1b640>:
   File "game/script.rpy", line 53, in script
     narrator "Summer vacation has finally arrived, and you've been planning this hiking trip for months."
   File "renpy/common/000window.rpy", line 132, in _window_auto_callback
@@ -68,4 +68,4 @@ NameError: name 'quick_menu' is not defined
 macOS-15.5-arm64-arm-64bit arm64
 Ren'Py 8.3.7.25031702
 Game Jam 1.0
-Sat Jun  7 19:13:45 2025
+Sat Jun  7 19:21:01 2025
