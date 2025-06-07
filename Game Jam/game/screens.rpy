@@ -1609,3 +1609,16 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+
+## screens.rpy - This file defines the user interface screens for the supernatural dating sim.
+
+################################################################################
+## Styles
+################################################################################
+
+style default:
+    properties gui.text_properties()
+    language gui.language
+
+style input
