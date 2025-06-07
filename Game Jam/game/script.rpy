@@ -10,21 +10,21 @@ define Kitsune = Character("Kitsune", color="#feca57")
 define narrator = Character(None, color="#ffffff")
 
 # Character image definitions
-image yuki default = "yuki_onna_default.png"
-image yuki scary = "yuki_onna_scary.png"
-image yuki happy = "yuki_onna_happy.png"
+# image yuki neutral = "yuki_onna_default.png"
+# image yuki happy = "yuki_onna_default.png"
+# image yuki scary = "yuki_onna_scary.png"
 
-image sadako default = "sadako_default.png"
-image sadako scary = "sadako_scary.png"
-image sadako shy = "sadako_shy.png"
+# image sadako neutral = "sadako_default.png"
+# image sadako shy = "sadako_default.png"
+# image sadako scary = "sadako_scary.png"
 
-image oni default = "oni_default.png"
-image oni scary = "oni_scary.png"
-image oni playful = "oni_playful.png"
+# image oni neutral = "oni_default.png"
+# image oni playful = "oni_default.png"
+# image oni scary = "oni_scary.png"
 
-image kitsune default = "kitsune_default.png"
-image kitsune scary = "kitsune_scary.png"
-image kitsune mischievous = "kitsune_mischievous.png"
+# image kitsune neutral = "kitsune_default.png"
+# image kitsune mischievous = "kitsune_default.png"
+# image kitsune scary = "kitsune_scary.png"
 
 # Background definitions
 image bg room = "bg_room.png"
@@ -48,7 +48,7 @@ default kitsune_affection = 0
 # The game starts here.
 label start:
     scene bg room
-    play music "ambient_summer.ogg" fadein 2.0
+    play music "assets/music/bg/ambient_summer.mp3" fadein 1.0 loop
     
     narrator "Summer vacation has finally arrived, and you've been planning this hiking trip for months."
     narrator "The weather forecast shows perfect conditions, and you're eager to escape the city heat."
@@ -58,16 +58,20 @@ label start:
         "Where should I go hiking?"
         
         "Akagi Mountain - Known for its ancient caves and mysterious fog":
+            #sfx
             $ mountain_choice = "akagi"
+            stop music fadeout 1.0
             jump akagi_path
             
         "Oeyama Mountain - Famous for oni legends and sudden weather changes":
+            #sfx
             $ mountain_choice = "oeyama"
+            stop music fadeout 1.0
             jump oeyama_path
 
 label akagi_path:
     scene bg forest
-    play music "forest_ambience.ogg" fadein 2.0
+    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
     
     narrator "You arrive at Akagi Mountain as the morning mist still clings to the trees."
     narrator "The trail is well-marked, but something feels different about this place."
@@ -82,15 +86,17 @@ label akagi_path:
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            stop music fadeout 1.0
             jump cave_encounter
 
 label oeyama_path:
     scene bg forest
-    play music "forest_ambience.ogg" fadein 2.0
+    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop
     
     narrator "Oeyama Mountain greets you with dense forests and winding paths."
     narrator "Local legends speak of oni who once ruled these peaks, but surely those are just stories..."
@@ -105,10 +111,12 @@ label oeyama_path:
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            stop music fadeout 1.0
             jump weather_encounter
 
 # TV Encounter - leads to Sadako route
@@ -127,12 +135,15 @@ label tv_encounter:
     
     # Determine which character appears based on mountain choice
     if mountain_choice == "akagi":
+        stop music fadeout 1.0
         jump sadako_route
     else:
+        stop music fadeout 1.0
         jump oni_route
 
 # Cave/Weather Encounter
 label cave_encounter:
+    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
     scene bg forest
     narrator "You leave the cabin behind and continue deeper into Akagi Mountain."
     narrator "The path becomes steeper, and you notice the temperature dropping."
@@ -146,9 +157,11 @@ label cave_encounter:
     with fade
     
     narrator "Everything goes dark..."
+    stop music fadeout 1.0
     jump yuki_route
 
 label weather_encounter:
+    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
     scene bg forest
     narrator "You decide to continue exploring Oeyama Mountain."
     narrator "Suddenly, the sunny sky darkens, and snow begins to fall despite it being summer."
@@ -162,385 +175,582 @@ label weather_encounter:
     with fade
     
     narrator "The cold overwhelms you..."
+    stop music fadeout 1.0
     jump kitsune_route
 
 # Character Routes - Each approximately 5 minutes of content
 
 label yuki_route:
     scene bg cave
-    show yuki default
+    show yuki neutral
     with fade
     
-    play music "mysterious_melody.ogg" fadein 2.0
+    play music "assets/music/bg/mystery_melody.mp3" fadein 1.0 loop
     
-    narrator "You awaken in the cave, but it's transformed into an ice palace of sorts."
-    narrator "Before you stands a beautiful woman with pale skin and flowing white hair."
+    narrator "You awaken in a strange cave, but something feels different about this place."
+    narrator "The air is thick with magic, and the walls seem to pulse with an otherworldly energy."
     
-    YukiOnna "You've wandered far from the warm world above, traveler."
-    YukiOnna "I am Yuki-onna, guardian of the eternal winter that sleeps within this mountain."
+    YukiOnna "You're not supposed to be here, human."
+    YukiOnna "This is the demon world, and your presence here is... problematic."
     
     menu:
-        "Are you going to hurt me?":
+        "Where am I? What happened?":
             $ yuki_affection += 1
-            YukiOnna "Hurt you? No... I sense no malice in your heart."
-            YukiOnna "But why do you seek the cold embrace of the mountain?"
+            YukiOnna "The mountain's magic must have pulled you through a rift between worlds."
+            YukiOnna "Humans aren't meant to be here. The demon lords would execute you on sight."
             
-        "This place is incredible!":
+        "Are you going to turn me in?":
+            $ yuki_affection -= 1
+            YukiOnna "That would be the proper thing to do..."
+            YukiOnna "But something about you makes me hesitate."
+            
+        "Can you help me get back?":
             $ yuki_affection += 2
-            show yuki default #happy
-            YukiOnna "You appreciate beauty even in the harsh cold. How... refreshing."
-            YukiOnna "Most humans flee when they feel winter's touch."
+            YukiOnna "Help you? That would be treason against the demon lords."
+            YukiOnna "But... I've always been different from other demons."
     
-    narrator "She glides closer, and you notice her breath doesn't mist in the cold air."
+    narrator "She looks around cautiously, as if expecting someone to appear at any moment."
     
-    YukiOnna "I have been alone here for centuries, watching the seasons change above."
-    YukiOnna "But summer grows stronger each year, and my domain shrinks."
+    if yuki_affection < 0:
+        YukiOnna "Your fear and suspicion are clouding your judgment."
+        YukiOnna "But perhaps there's still time to change your fate."
+    else:
+        YukiOnna "I've been watching the human world for centuries, fascinated by its warmth and life."
+        YukiOnna "Maybe helping you is my chance to do something good."
     
     menu:
-        "That must be lonely.":
+        "I trust you to help me.":
             $ yuki_affection += 2
-            show yuki default #happy
-            YukiOnna "You... understand loneliness?"
-            YukiOnna "Perhaps that's why the mountain brought you to me."
+            YukiOnna "Your trust... it's been so long since anyone trusted me."
+            YukiOnna "I'll help you find a way back, but we must be careful."
             
-        "Why don't you leave this place?":
-            $ yuki_affection += 1
-            YukiOnna "I am bound to winter itself. Where it goes, I must follow."
-            YukiOnna "But in places like this, winter never truly dies."
+        "How do I know you won't betray me?":
+            $ yuki_affection -= 1
+            YukiOnna "You don't. But what choice do you have?"
+            YukiOnna "The demon lords will find you eventually if you stay here alone."
+            
+        "What's in it for you?":
+            YukiOnna "Perhaps I'm tired of the eternal winter of the demon world."
+            YukiOnna "Or perhaps I just want to believe there's still good in this world."
     
-    narrator "She extends a pale hand toward you."
+    narrator "She leads you through winding tunnels, her ice magic creating a path through the darkness."
+    narrator "Suddenly, you hear voices echoing from ahead."
     
-    YukiOnna "Would you stay with me, just for a while?"
-    YukiOnna "I could show you wonders hidden in ice and snow that no human has ever seen."
+    YukiOnna "The demon guards are patrolling. We need to hide."
     
     menu:
-        "I'd like that very much.":
-            $ yuki_affection += 3
-            show yuki default #happy
-            YukiOnna "Then let me share with you the secret beauty of eternal winter."
-            jump yuki_ending
-            
-        "I need to return to my world.":
+        "Follow her lead":
             $ yuki_affection += 1
-            YukiOnna "I understand. The warm world calls to you."
-            YukiOnna "But know that you will always have a place here, should you choose to return."
-            jump neutral_ending
+            YukiOnna "Good. Trust is essential if we're to survive this."
+            
+        "Try to run":
+            $ yuki_affection -= 2
+            show yuki scary
+            YukiOnna "Fool! You'll get us both killed!"
+            YukiOnna "The demon lords will show no mercy to traitors."
+            narrator "Before you can react, Yuki-onna's hand strikes your temple."
+            narrator "The last thing you see is her cold, determined expression as darkness claims you."
+            jump yuki_death
+    
+    if yuki_affection >= 3:
+        stop music fadeout 1.0
+        jump yuki_marriage
+    else:
+        stop music fadeout 1.0
+        jump yuki_death
 
 label sadako_route:
     scene bg cabin
-    show sadako default
+    show sadako neutral
     with fade
     
-    play music "haunting_piano.ogg" fadein 2.0
+    play music "assets/music/bg/haunting_piano.mp3" fadein 1.0 loop
     
-    narrator "You find yourself back in the cabin, but the atmosphere has changed completely."
-    narrator "The woman from the television stands before you, her long hair partially obscuring her face."
+    narrator "The television's static clears to reveal a dark, otherworldly realm."
+    narrator "Through the screen, a woman with long dark hair reaches out to you."
     
-    Sadako "You... you actually turned on the television."
-    Sadako "Most people sense something wrong and leave immediately."
-    
-    narrator "She moves closer, and you notice her movements are graceful yet unsettling."
-    narrator "The air around her seems to shimmer with otherworldly energy."
-    
-    Sadako "I am Sadako. Once, I had powers that others couldn't understand."
-    Sadako "They called me cursed, dangerous. So I found refuge in the space between worlds."
-    
-    narrator "She gestures to the television, which now shows swirling darkness."
-    
-    Sadako "Through this window, I've watched the world change, but I've been so... alone."
-    Sadako "You're the first person to stay and speak with me instead of running in terror."
-    
-    narrator "Her eyes meet yours, and you feel a chill run down your spine."
-    
-    Sadako "I could share my world with you... but the choice comes with consequences."
-    Sadako "Will you accept my gift and stay with me forever?"
+    Sadako "O-oh... a human? In the demon world?"
+    Sadako "I... I didn't mean to pull you through. The television sometimes... acts on its own."
     
     menu:
-        "Yes, I want to be with you.":
-            jump sadako_marriage
+        "How did this happen?":
+            $ sadako_affection += 1
+            Sadako "W-well... the television acts as a gateway between worlds."
+            Sadako "But it's not supposed to pull humans through... I'm so sorry..."
             
-        "No, this is too frightening.":
-            jump sadako_death
+        "Are you going to turn me in?":
+            $ sadako_affection -= 1
+            show sadako scary
+            Sadako "T-turn you in? I... I should, but..."
+            Sadako "I've always been different from other demons. Too... too soft, they say."
+            
+        "Can you help me get back?":
+            $ sadako_affection += 2
+            Sadako "H-help you? That would be treason against the demon lords..."
+            Sadako "But... I've always been fascinated by the human world. Maybe I could..."
+    
+    narrator "She fidgets nervously, her hair swaying as she looks around."
+    
+    if sadako_affection < 0:
+        Sadako "Y-your suspicion is understandable... but dangerous here."
+        Sadako "In this world, trust is the only currency that matters."
+        show sadako scary
+    else:
+        Sadako "I... I've been watching your world through the television for so long."
+        Sadako "Maybe helping you is my chance to do something... meaningful."
+        show sadako neutral
+    
+    menu:
+        "I trust you to help me.":
+            $ sadako_affection += 2
+            Sadako "Y-you trust me? It's been so long since anyone..."
+            Sadako "I'll help you find a way back, but we must be careful."
+            
+        "How do I know you won't betray me?":
+            $ sadako_affection -= 1
+            show sadako scary
+            Sadako "Y-you don't... but what choice do you have?"
+            Sadako "The demon lords will find you eventually if you stay here alone."
+            
+        "What's in it for you?":
+            Sadako "I... I'm tired of being just a watcher in the shadows."
+            Sadako "Or perhaps I just want to believe there's still good in this world."
+    
+    narrator "Suddenly, the sound of demon guards echoes through the corridors."
+    
+    Sadako "O-oh no! The guards are coming! They'll take you to the demon lords!"
+    
+    menu:
+        "Follow her lead":
+            $ sadako_affection += 1
+            Sadako "G-good. Trust is essential if we're to survive this."
+            
+        "Try to run":
+            $ sadako_affection -= 2
+            show sadako scary
+            Sadako "N-no! You'll get us both killed!"
+            Sadako "The demon lords will show no mercy to traitors."
+    
+    if sadako_affection >= 3:
+        stop music fadeout 1.0
+        jump sadako_marriage
+    else:
+        stop music fadeout 1.0
+        jump sadako_death
 
 label oni_route:
     scene bg cabin
-    show oni default
+    show oni neutral
     with fade
     
-    play music "energetic_drums.ogg" fadein 2.0
+    play music "assets/music/bg/energetic_drums.mp3" fadein 1.0 loop
     
-    narrator "The cabin shakes as a powerful presence makes itself known."
-    narrator "A tall, striking woman with small horns and vibrant red hair appears before you."
+    narrator "The cabin door bursts open, revealing a massive figure silhouetted against the demon world's crimson sky."
+    narrator "A powerful oni warrior stands before you, his horns casting long shadows in the dim light."
     
-    Oni "Ha! You've got guts, human! Most people run screaming when they feel my presence."
-    Oni "I'm Oni, and I've been stuck on this boring mountain for way too long!"
-    
-    narrator "She flexes her impressive muscles and grins, showing sharp canine teeth."
-    narrator "Despite her intimidating appearance, there's something almost playful about her demeanor."
-    
-    Oni "I used to be the terror of these mountains, you know!"
-    Oni "But what's the point of being feared if nobody comes around to be afraid?"
-    
-    narrator "She looks at you with a predatory gleam in her eyes."
-    
-    Oni "You climbed all the way up here, found this weird cabin, and you're still not running."
-    Oni "That's either very brave... or very stupid."
-    
-    narrator "She steps closer, her presence both threatening and magnetic."
-    
-    Oni "I'll make you a deal, little human. Prove you're worthy of my respect..."
-    Oni "And I might just let you become my eternal companion. Refuse, and... well."
+    Oni "Oho! What do we have here? A little human lost in the demon world?"
+    Oni "This is going to be fun! The demon lords will be so surprised!"
     
     menu:
-        "I accept your challenge!":
-            jump oni_marriage
+        "I don't want any trouble":
+            $ oni_affection += 1
+            Oni "Trouble? Ha! You're already in it, little one!"
+            Oni "But don't worry, I'll make sure it's the fun kind of trouble!"
             
-        "I don't want to fight you.":
-            jump oni_death
+        "I can handle myself":
+            $ oni_affection -= 1
+            show oni scary
+            Oni "Bold words for someone so tiny! I like your spirit!"
+            Oni "But maybe you should save that courage for when you really need it!"
+            
+        "I need help getting back to my world":
+            $ oni_affection += 2
+            Oni "Help? An oni helping a human? That would be a first!"
+            Oni "But you know what? I've always wanted to try something new!"
+    
+    narrator "The oni circles around you, his eyes sparkling with excitement."
+    
+    if oni_affection < 0:
+        Oni "Your bravado is cute, but dangerous in this world."
+        Oni "The demon lords don't play nice with humans who think they're tough."
+        show oni scary
+    else:
+        Oni "You know, humans are usually so... boring."
+        Oni "But you, you might actually be fun to play with!"
+        show oni neutral
+    
+    menu:
+        "I'll help you if you help me":
+            $ oni_affection += 2
+            Oni "A deal? Now that's what I call a good game!"
+            Oni "But what could a little human possibly offer an oni warrior?"
+            
+        "Please, I just want to go home":
+            $ oni_affection -= 1
+            show oni scary
+            Oni "Aw, don't be such a scaredy-cat!"
+            Oni "Where's your sense of adventure?"
+            
+        "I can prove my worth":
+            Oni "Prove your worth? Now that's what I like to hear!"
+            Oni "Let's make a game of it!"
+    
+    narrator "Suddenly, the ground trembles as demon guards approach."
+    
+    Oni "Oho! The guards are coming! This is getting exciting!"
+    
+    menu:
+        "Fight alongside the oni":
+            $ oni_affection += 2
+            Oni "That's the spirit! Let's show them what we're made of!"
+            
+        "Try to hide":
+            $ oni_affection -= 2
+            show oni scary
+            Oni "Hiding? Where's the fun in that?"
+            Oni "The demon lords will make an example of you."
+    
+    if oni_affection >= 3:
+        stop music fadeout 1.0
+        jump oni_marriage
+    else:
+        stop music fadeout 1.0
+        jump oni_death
 
 label kitsune_route:
-    scene bg snowy_path
-    show kitsune default
+    scene bg cabin
+    show kitsune neutral
     with fade
     
-    play music "mystical_flute.ogg" fadein 2.0
+    play music "assets/music/bg/mystical_flute.mp3" fadein 1.0 loop #more playful
     
-    narrator "Through the supernatural snowfall, a fox-eared woman with golden hair approaches."
-    narrator "Her multiple tails sway hypnotically as she moves with fluid grace."
+    narrator "A swirl of foxfire illuminates the cabin, revealing a beautiful woman with fox ears and multiple tails."
+    narrator "She materializes from the flames, her golden eyes studying you with amusement."
     
-    Kitsune "My, my... what have we here? A human who doesn't flee from a little magical weather?"
-    Kitsune "I am Kitsune, and I confess, I may have been testing you."
-    
-    narrator "She circles around you playfully, but there's something predatory in her movements."
-    narrator "Her golden eyes gleam with an otherworldly intelligence."
-    
-    Kitsune "I've been watching travelers on this mountain for decades."
-    Kitsune "Most are so boring, so predictable. But you... you're different."
-    
-    narrator "She stops in front of you, her tails swishing behind her."
-    
-    Kitsune "You see, I've grown quite lonely up here. Fox spirits need... companionship."
-    Kitsune "But humans are so fragile, so short-lived. It's quite the problem."
-    
-    narrator "Her smile becomes both beautiful and unsettling."
-    
-    Kitsune "I could solve that problem, though. Make you like me - eternal, magical."
-    Kitsune "But the transformation is... irreversible. What do you say?"
+    Kitsune "My, my, what do we have here? A little human lost in the demon world?"
+    Kitsune "How delightfully unexpected! The demon lords will be so... entertained."
     
     menu:
-        "I want to become like you.":
-            jump kitsune_marriage
+        "Who are you?":
+            $ kitsune_affection += 1
+            Kitsune "Me? I'm just a humble fox spirit who loves to play games."
+            Kitsune "And you, my dear human, have just become my newest plaything~"
             
-        "I want to stay human.":
-            jump kitsune_death
+        "Are you going to turn me in?":
+            $ kitsune_affection -= 1
+            show kitsune scary
+            Kitsune "Turn you in? Now where's the fun in that?"
+            Kitsune "I much prefer to play with my prey before deciding their fate~"
+            
+        "Can you help me get back to my world?":
+            $ kitsune_affection += 2
+            Kitsune "Help you? That would be... interesting."
+            Kitsune "But what would you offer in return for such a favor? I do love making deals~"
+    
+    narrator "She circles around you, her tails swishing with barely contained energy."
+    
+    if kitsune_affection < 0:
+        Kitsune "Your suspicion is wise, but perhaps misplaced."
+        Kitsune "In this world, sometimes the greatest danger comes from those you trust least~"
+        show kitsune scary
+    else:
+        Kitsune "You know, humans are usually so... predictable."
+        Kitsune "But you, you're different. I wonder what games we could play together~"
+        show kitsune neutral
+    
+    menu:
+        "I'll make a deal with you":
+            $ kitsune_affection += 2
+            Kitsune "A deal? Now you're speaking my language!"
+            Kitsune "But be careful what you wish for, little human~"
+            
+        "I don't trust you":
+            $ kitsune_affection -= 1
+            show kitsune scary
+            Kitsune "Smart, but perhaps too smart for your own good."
+            Kitsune "The demon lords don't take kindly to humans who think they're clever~"
+            
+        "What do you want from me?":
+            Kitsune "What do I want? Perhaps I just want to see how this story unfolds."
+            Kitsune "Or perhaps I'm bored of the usual games in the demon world~"
+    
+    narrator "Suddenly, the sound of demon guards echoes through the corridors."
+    
+    Kitsune "Oho! The guards are coming! This is getting interesting~"
+    
+    menu:
+        "Trust the kitsune's plan":
+            $ kitsune_affection += 2
+            Kitsune "Good choice. Let's make this interesting~"
+            
+        "Try to escape alone":
+            $ kitsune_affection -= 2
+            show kitsune scary
+            Kitsune "Running? How predictable. And how... disappointing."
+            Kitsune "The demon lords will make an example of you~"
+    
+    if kitsune_affection >= 3:
+        stop music fadeout 1.0
+        jump kitsune_marriage
+    else:
+        stop music fadeout 1.0
+        jump kitsune_death
 
 # Marriage and Death Endings - Two per character
 
 label yuki_marriage:
     scene bg cave
-    show yuki default #happy
+    show yuki neutral
     with fade
     
-    YukiOnna "Your acceptance of my world fills my heart with warmth I thought I'd never feel again."
-    YukiOnna "Then stay with me, and become part of the eternal winter."
+    YukiOnna "I've found a way to open a portal to your world."
+    YukiOnna "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
-    narrator "She extends her hand, and as you take it, you feel a wonderful coldness spread through your body."
-    narrator "Your breath becomes visible, but you no longer feel the chill."
+    narrator "She takes your hand, and together you step through the portal."
+    narrator "The warmth of the human world welcomes you both."
     
-    YukiOnna "Now you are like me - eternal, bound to winter's beauty."
-    YukiOnna "We will rule over the ice and snow together, forever."
+    scene bg black
+    with fade
     
-    narrator "You feel your humanity slipping away, replaced by something magical and timeless."
-    narrator "Together, you and Yuki-onna become the guardians of eternal winter."
+    centered "ONE YEAR LATER{w=2.0}{nw}"
+    
+    scene bg modern_city
+    show yuki happy
+    with fade
+    
+    YukiOnna "It's been a year since we escaped the demon world."
+    YukiOnna "I never thought I'd find happiness in the human world, but you showed me the way."
+    
+    narrator "She takes your hand, a gentle smile on her face."
+    
+    YukiOnna "Will you spend the rest of your life with me?"
+    YukiOnna "I promise to keep you warm, even in the coldest winters."
     
     scene bg black
     with fade
     
     centered "YUKI-ONNA MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have become one with the winter itself."
+    centered "You have found eternal love in the warmth of winter."
     
-    return
+    jump credit
 
 label yuki_death:
     scene bg cave
     show yuki scary
     with fade
     
-    YukiOnna "Fear... yes, I can smell it on you now."
-    YukiOnna "How disappointing. I thought you might be different."
+    YukiOnna "I'm sorry, but I can't risk my position for someone who doesn't trust me."
+    YukiOnna "The demon lords will decide your fate."
     
-    narrator "Her beautiful features become sharp and menacing."
-    narrator "The temperature drops drastically, and ice begins to form on your skin."
+    narrator "She leads you deeper into the cave, her hand cold against yours."
+    narrator "The temperature drops further as you enter a secluded chamber."
     
-    YukiOnna "Those who reject winter's embrace must face winter's wrath."
-    YukiOnna "Your warmth will be mine, and your body will become part of my frozen domain."
+    YukiOnna "This is where I bring those who disappoint me."
+    YukiOnna "Your warmth will sustain me through the long winter."
     
-    narrator "You try to run, but the cold has already seeped into your bones."
-    narrator "As consciousness fades, you feel yourself becoming one with the ice..."
+    narrator "Before you can react, her hand strikes your temple."
+    narrator "The last thing you see is her cold, determined expression as darkness claims you."
+    narrator "When you wake up, you're in a secluded ice cave, Yuki-onna watching over you."
     
     scene bg black
     with fade
     
     centered "YUKI-ONNA DEATH ENDING{w=2.0}{nw}"
-    centered "You have become a frozen statue in her ice palace."
+    centered "Your warmth has become her eternal feast."
     
-    return
+    jump credit
 
 label sadako_marriage:
     scene bg cabin
-    show sadako default #shy
+    show sadako neutral
     with fade
     
-    Sadako "You... you truly accept me? Even knowing what I am?"
-    Sadako "Then let us be together beyond the veil of life and death."
+    Sadako "I've found a way to open a portal to your world."
+    Sadako "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
-    narrator "She reaches out to you, and as her fingers touch yours, you feel a strange tingling."
-    narrator "The world around you begins to shift and blur."
+    narrator "She takes your hand, and together you step through the television screen."
+    narrator "The familiar warmth of your world welcomes you both."
     
-    Sadako "Now you can see the world as I do - between reality and dreams."
-    Sadako "We will exist together in the spaces between worlds."
+    scene bg black
+    with fade
     
-    narrator "Your vision changes, and you realize you're no longer fully alive, but not dead either."
-    narrator "You and Sadako exist in a realm between worlds, together for eternity."
+    centered "ONE YEAR LATER{w=2.0}{nw}"
+    
+    scene bg modern_city
+    show sadako shy
+    with fade
+    
+    Sadako "It's been a year since we escaped the demon world."
+    Sadako "I never thought I'd find someone who could see past my... unusual nature."
+    
+    narrator "She looks at you with a gentle smile, her hair no longer obscuring her face."
+    
+    Sadako "Will you spend the rest of your life with me?"
+    Sadako "I promise to keep the darkness at bay, as long as you're by my side."
     
     scene bg black
     with fade
     
     centered "SADAKO MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have joined her in the realm between life and death."
+    centered "You have found love in the space between worlds."
     
-    return
+    jump credit
 
 label sadako_death:
     scene bg cabin
     show sadako scary
     with fade
     
-    Sadako "Fear... just like all the others. How naive I was to hope."
-    Sadako "You reject me, just as everyone else has."
+    Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
+    Sadako "The demon lords will decide your fate."
     
-    narrator "Her hair falls across her face, and the temperature in the room drops."
-    narrator "The television screen begins to glow with an ominous light."
+    narrator "She leads you deeper into the cabin, her hand cold against yours."
+    narrator "The television static grows louder as you enter a secluded room."
     
-    Sadako "Then you will share the fate of all who have seen me and turned away."
-    Sadako "Seven days... but for you, it will be much sooner."
+    Sadako "This is where I bring those who disappoint me."
+    Sadako "Your life force will sustain me through the long years."
     
-    narrator "Images of death and decay flash across the television screen."
-    narrator "You feel your life force being drained away as her curse takes hold."
+    narrator "Before you can react, her hand reaches through the television screen."
+    narrator "The last thing you see is her cold, determined expression as darkness claims you."
+    narrator "When you wake up, you're trapped in the television, Sadako watching over you."
     
     scene bg black
     with fade
     
     centered "SADAKO DEATH ENDING{w=2.0}{nw}"
-    centered "Her curse has claimed another victim."
+    centered "Your life has become her eternal entertainment."
     
-    return
+    jump credit
 
 label oni_marriage:
     scene bg cabin
-    show oni default #playful
+    show oni neutral
     with fade
     
-    Oni "Hah! Now THAT'S the spirit I was looking for!"
-    Oni "You're not just brave, you're as fierce as I am!"
+    Oni "I've found a way to open a portal to your world."
+    Oni "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
-    narrator "She laughs heartily and claps you on the back with enough force to knock you forward."
-    narrator "But instead of pain, you feel a surge of incredible strength."
+    narrator "He takes your hand, and together you step through the portal."
+    narrator "The familiar warmth of your world welcomes you both."
     
-    Oni "I'm going to make you like me - strong, eternal, and ready for any adventure!"
-    Oni "Together we'll rule these mountains and beyond!"
+    scene bg black
+    with fade
     
-    narrator "You feel your body changing, becoming stronger and more powerful."
-    narrator "Small horns begin to grow from your head as your transformation completes."
+    centered "ONE YEAR LATER{w=2.0}{nw}"
+    
+    scene bg modern_city
+    show oni playful
+    with fade
+    
+    Oni "It's been a year since we escaped the demon world."
+    Oni "I never thought I'd find someone who could match my strength and spirit."
+    
+    narrator "He looks at you with a proud smile, his horns now hidden under a stylish hat."
+    
+    Oni "Will you spend the rest of your life with me?"
+    Oni "I promise to protect you with all my strength, as long as you stand by my side."
     
     scene bg black
     with fade
     
     centered "ONI MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have become an oni and will adventure together forever."
+    centered "You have found love in the strength of your bond."
     
-    return
+    jump credit
 
 label oni_death:
     scene bg cabin
     show oni scary
     with fade
     
-    Oni "Coward! You're just like all the rest - no backbone!"
-    Oni "I offer you strength and power, and you cower like a weakling!"
+    Oni "I'm sorry, but I can't risk my position for someone who doesn't trust me."
+    Oni "The demon lords will decide your fate."
     
-    narrator "Her playful demeanor vanishes, replaced by terrifying rage."
-    narrator "Her muscles bulge and her eyes glow with fury."
+    narrator "He leads you deeper into the cabin, his grip firm on your arm."
+    narrator "The air grows thick with demonic energy as you enter a secluded chamber."
     
-    Oni "Weaklings have no place in my domain!"
-    Oni "I'll crush you like the pathetic insect you are!"
+    Oni "This is where I bring those who disappoint me."
+    Oni "Your strength will sustain me through the long battles to come."
     
-    narrator "She raises her massive fist, and you realize there's no escape."
-    narrator "The last thing you see is her terrible smile before everything goes dark."
+    narrator "Before you can react, his massive fist strikes your temple."
+    narrator "The last thing you see is his cold, determined expression as darkness claims you."
+    narrator "When you wake up, you're in a secluded training ground, the Oni watching over you."
     
     scene bg black
     with fade
     
     centered "ONI DEATH ENDING{w=2.0}{nw}"
-    centered "Your cowardice has sealed your fate."
+    centered "Your strength has become his eternal power."
     
-    return
+    jump credit
 
 label kitsune_marriage:
-    scene bg snowy_path
-    show kitsune default #mischievous
+    scene bg cabin
+    show kitsune neutral
     with fade
     
-    Kitsune "Excellent choice! I knew you had the wisdom to see beyond mortal limitations."
-    Kitsune "Now, hold still while I work my magic on you."
+    Kitsune "I've found a way to open a portal to your world."
+    Kitsune "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
-    narrator "She begins to glow with golden light, and you feel a warm tingling throughout your body."
-    narrator "Your senses sharpen, and you can suddenly perceive magic in the air around you."
+    narrator "She takes your hand, and together you step through the portal."
+    narrator "The familiar warmth of your world welcomes you both."
     
-    Kitsune "Welcome to immortality, my dear. You now have the power of a fox spirit."
-    Kitsune "We'll spend eternity together, playing tricks and exploring the magical world."
+    scene bg black
+    with fade
     
-    narrator "You feel your own fox tail beginning to grow as the transformation completes."
-    narrator "Together, you and the kitsune will roam the world, eternal and free."
+    centered "ONE YEAR LATER{w=2.0}{nw}"
+    
+    scene bg modern_city
+    show kitsune mischievous
+    with fade
+    
+    Kitsune "It's been a year since we escaped the demon world."
+    Kitsune "I never thought I'd find someone who could keep up with my tricks and games."
+    
+    narrator "She looks at you with a playful smile, her tails now hidden under a stylish coat."
+    
+    Kitsune "Will you spend the rest of your life with me?"
+    Kitsune "I promise to keep life interesting, as long as you play along with my games."
     
     scene bg black
     with fade
     
     centered "KITSUNE MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have become a fox spirit and gained immortality."
+    centered "You have found love in the joy of eternal play."
     
-    return
+    jump credit
 
 label kitsune_death:
-    scene bg snowy_path
+    scene bg cabin
     show kitsune scary
     with fade
     
-    Kitsune "How disappointing. I offer you eternity, and you choose to remain... mundane."
-    Kitsune "Well, if you won't join me willingly, you'll serve me in another way."
+    Kitsune "I'm sorry, but I can't risk my position for someone who doesn't trust me."
+    Kitsune "The demon lords will decide your fate."
     
-    narrator "Her playful demeanor disappears, replaced by cold calculation."
-    narrator "Her tails begin to glow with ominous energy."
+    narrator "She leads you deeper into the cabin, her hand deceptively gentle on yours."
+    narrator "The air grows thick with foxfire as you enter a secluded chamber."
     
-    Kitsune "Your life force will sustain me for decades. Consider it... payment for wasting my time."
-    Kitsune "Don't worry, it will be over quickly."
+    Kitsune "This is where I bring those who disappoint me."
+    Kitsune "Your life force will sustain me through the long years of games to come."
     
-    narrator "You try to run, but fox-fire surrounds you, draining your energy."
-    narrator "As your vision fades, you realize you've become her next meal."
+    narrator "Before you can react, her tails wrap around you, draining your energy."
+    narrator "The last thing you see is her cold, determined expression as darkness claims you."
+    narrator "When you wake up, you're in a secluded shrine, the Kitsune watching over you."
     
     scene bg black
     with fade
     
     centered "KITSUNE DEATH ENDING{w=2.0}{nw}"
-    centered "Your refusal has cost you your life."
+    centered "Your life has become her eternal plaything."
     
-    return
+    jump credit
 
 label neutral_ending:
     scene bg forest
     with fade
     
-    play music "forest_ambience.ogg" fadein 2.0
+    play music "assets/music/bg/ambient_forest.mp3" fadein 2.0 loop #change
     
     narrator "You make your way back down the mountain, the strange encounters fading like a dream."
     narrator "The sun is beginning to set, casting long shadows through the trees."
@@ -556,5 +766,31 @@ label neutral_ending:
     
     centered "NEUTRAL ENDING{w=2.0}{nw}"
     centered "You have returned home, carrying the memories of your supernatural encounter."
+    
+    jump credit
+
+label credit:
+    scene bg black
+    with fade
+    
+    centered "CREDITS{w=2.0}{nw}"
+    centered "Game Development{w=1.0}{nw}"
+    centered "Game Mechanics: Faiq and Jonathan{w=1.0}{nw}"
+    centered "Story: Faiq{w=1.0}{nw}"
+    centered "GUI: Jonathan{w=1.0}{nw}"
+    
+    centered "Art & Graphics{w=1.0}{nw}"
+    centered "Illustrator: Ren{w=1.0}{nw}"
+    
+    centered "Music & Sound{w=1.0}{nw}"
+    centered "SFX & Background Music: Chad{w=1.0}{nw}"
+    
+    centered "Special Thanks{w=1.0}{nw}"
+    centered "Ren'Py Engine{w=1.0}{nw}"
+    centered "All our team members{w=1.0}{nw}"
+    centered "And you, for playing our game!{w=2.0}{nw}"
+
+    centered "Third-Party Sources{w=1.0}{nw}"
+    centered "Musics{w=1.0}{nw}"
     
     return

@@ -1,0 +1,44 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 652, in script
+    centered "Lead Developer: [Your Name]{w=1.0}{nw}"
+SyntaxError: unexpected EOF while parsing (<none>, line 1)
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 652, in script
+    centered "Lead Developer: [Your Name]{w=1.0}{nw}"
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 2586, in execute
+    Say.execute(self)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 623, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/exports/sayexports.py", line 132, in say
+    who(what, *args, **kwargs)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/character.py", line 1456, in __call__
+    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/character.py", line 1369, in prefix_suffix
+    return (sub(prefix) + sub(body) + sub(suffix))
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/character.py", line 1349, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 373, in substitute
+    s = interpolate(s, variables) # type: ignore
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 86, in interpolate
+    raise e
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 78, in interpolate
+    value = renpy.python.py_eval(code, {}, scope)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1216, in py_eval
+    code = py_compile(code, 'eval')
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1153, in py_compile
+    raise e
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1090, in py_compile
+    raise orig_e
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1082, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
+SyntaxError: unexpected EOF while parsing (<none>, line 1)
+
+macOS-15.5-arm64-arm-64bit arm64
+Ren'Py 8.3.7.25031702
+Game Jam 1.0
+Sat Jun  7 16:55:47 2025
