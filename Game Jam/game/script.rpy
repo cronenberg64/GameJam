@@ -187,7 +187,7 @@ label yuki_route:
             
         "This place is incredible!":
             $ yuki_affection += 2
-            show yuki happy
+            show yuki default #happy
             YukiOnna "You appreciate beauty even in the harsh cold. How... refreshing."
             YukiOnna "Most humans flee when they feel winter's touch."
     
@@ -199,7 +199,7 @@ label yuki_route:
     menu:
         "That must be lonely.":
             $ yuki_affection += 2
-            show yuki happy
+            show yuki default #happy
             YukiOnna "You... understand loneliness?"
             YukiOnna "Perhaps that's why the mountain brought you to me."
             
@@ -216,7 +216,7 @@ label yuki_route:
     menu:
         "I'd like that very much.":
             $ yuki_affection += 3
-            show yuki happy
+            show yuki default #happy
             YukiOnna "Then let me share with you the secret beauty of eternal winter."
             jump yuki_ending
             
@@ -338,7 +338,7 @@ label kitsune_route:
 
 label yuki_marriage:
     scene bg cave
-    show yuki happy
+    show yuki default #happy
     with fade
     
     YukiOnna "Your acceptance of my world fills my heart with warmth I thought I'd never feel again."
@@ -388,7 +388,7 @@ label yuki_death:
 
 label sadako_marriage:
     scene bg cabin
-    show sadako shy
+    show sadako default #shy
     with fade
     
     Sadako "You... you truly accept me? Even knowing what I am?"
@@ -438,7 +438,7 @@ label sadako_death:
 
 label oni_marriage:
     scene bg cabin
-    show oni playful
+    show oni default #playful
     with fade
     
     Oni "Hah! Now THAT'S the spirit I was looking for!"
@@ -488,7 +488,7 @@ label oni_death:
 
 label kitsune_marriage:
     scene bg snowy_path
-    show kitsune mischievous
+    show kitsune default #mischievous
     with fade
     
     Kitsune "Excellent choice! I knew you had the wisdom to see beyond mortal limitations."
@@ -533,5 +533,28 @@ label kitsune_death:
     
     centered "KITSUNE DEATH ENDING{w=2.0}{nw}"
     centered "Your refusal has cost you your life."
+    
+    return
+
+label neutral_ending:
+    scene bg forest
+    with fade
+    
+    play music "forest_ambience.ogg" fadein 2.0
+    
+    narrator "You make your way back down the mountain, the strange encounters fading like a dream."
+    narrator "The sun is beginning to set, casting long shadows through the trees."
+    
+    narrator "As you reach the base of the mountain, you look back one last time."
+    narrator "Was it all real? Or just your imagination playing tricks on you?"
+    
+    narrator "Either way, you've survived your adventure, wiser for the experience."
+    narrator "The city lights welcome you back to the familiar world of the living."
+    
+    scene bg black
+    with fade
+    
+    centered "NEUTRAL ENDING{w=2.0}{nw}"
+    centered "You have returned home, carrying the memories of your supernatural encounter."
     
     return
