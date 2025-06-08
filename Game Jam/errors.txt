@@ -2,9 +2,29 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 601: style property at is not known.
-    at game_menu_transform
-      ^
+File "game/script.rpy", line 49: expected statement.
+    neutral mountain_choice = ""
+                            ^
+
+File "game/script.rpy", line 50: expected statement.
+    neutral cabin_choice = ""
+                         ^
+
+File "game/script.rpy", line 53: expected statement.
+    neutral yuki_affection = 0
+                           ^
+
+File "game/script.rpy", line 54: expected statement.
+    neutral sadako_affection = 0
+                             ^
+
+File "game/script.rpy", line 55: expected statement.
+    neutral oni_affection = 0
+                          ^
+
+File "game/script.rpy", line 56: expected statement.
+    neutral kitsune_affection = 0
+                              ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Sun Jun  8 13:01:44 2025
+Sun Jun  8 14:08:08 2025

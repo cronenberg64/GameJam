@@ -10,21 +10,21 @@ define Kitsune = Character("Kitsune", color="#f7bc3c")
 define narrator = Character(None, color="#ffffff")
 
 # Character image definitions
-# image yuki default = "yuki_onna_default.png"
-# image yuki scary = "yuki_onna_scary.png"
-# image yuki happy = "yuki_onna_happy.png"
+image yuki neutral = "assets/illustrations/characters/yuki_neutral.png"
+image yuki scary = "assets/illustrations/characters/yuki_scary.png"
+image yuki happy = "assets/illustrations/characters/yuki_happy.png"
 
-# image sadako default = "sadako_default.png"
-# image sadako scary = "sadako_scary.png"
-# image sadako shy = "sadako_shy.png"
+image sadako neutral = "assets/illustrations/characters/sadako_neutral.png"
+image sadako scary = "assets/illustrations/characters/sadako_scary2.png"
+image sadako shy = "assets/illustrations/characters/sadako_shy.png"
 
-# image oni default = "oni_default.png"
-# image oni scary = "oni_scary.png"
-# image oni playful = "oni_playful.png"
+image oni neutral = "assets/illustrations/characters/oni_neutral.png"
+image oni scary = "assets/illustrations/characters/oni_scary.png"
+image oni playful = "assets/illustrations/characters/oni_playful.png"
 
-# image kitsune default = "kitsune_default.png"
-# image kitsune scary = "kitsune_scary.png"
-# image kitsune mischievous = "kitsune_mischievous.png"
+image kitsune neutral = "assets/illustrations/characters/kitsune_neutral.png"
+image kitsune scary = "assets/illustrations/characters/kitsune_scary.png"
+image kitsune mischievous = "assets/illustrations/characters/kitsune_mischievous.png"
 
 transform bg_transform:
     fit "cover"
@@ -215,6 +215,8 @@ label yuki_route:
     
     narrator "You awaken in a strange cave, but something feels different about this place."
     narrator "The air is thick with magic, and the walls seem to pulse with an otherworldly energy."
+
+    ##describe yuki onna appearance
     
     YukiOnna "You're not supposed to be here, human."
     YukiOnna "This is the demon world, and your presence here is... problematic."
@@ -241,16 +243,19 @@ label yuki_route:
         YukiOnna "Your fear and suspicion are clouding your judgment."
         YukiOnna "But perhaps there's still time to change your fate."
     else:
+        show yuki happy
         YukiOnna "I've been watching the human world for centuries, fascinated by its warmth and life."
         YukiOnna "Maybe helping you is my chance to do something good."
     
     menu:
         "I trust you to help me.":
+            show yuki happy
             $ yuki_affection += 2
             YukiOnna "Your trust... it's been so long since anyone trusted me."
             YukiOnna "I'll help you find a way back, but we must be careful."
             
         "How do I know you won't betray me?":
+            show yuki neutral
             $ yuki_affection -= 1
             YukiOnna "You don't. But what choice do you have?"
             YukiOnna "The demon lords will find you eventually if you stay here alone."
@@ -262,6 +267,8 @@ label yuki_route:
     scene bg corridor
     narrator "She leads you through winding tunnels, her ice magic creating a path through the darkness."
     narrator "Suddenly, you hear voices echoing from ahead."
+
+    show yuki neutral
     
     YukiOnna "The demon guards are patrolling. We need to hide."
     
@@ -291,7 +298,7 @@ label yuki_route:
 
 label sadako_route:
     scene bg cabin_creepy at bg_transform
-    show sadako neutral
+    show sadako shy
     with fade
     
     play sound "assets/music/sfx/tv_stat.mp3" fadein 1.0 fadeout 1.0
@@ -299,6 +306,8 @@ label sadako_route:
     
     narrator "The television's static clears to reveal a dark, otherworldly realm."
     narrator "Through the screen, a woman with long dark hair reaches out to you."
+
+    ##describe sadako appearance
     
     Sadako "O-oh... a human? In the demon world?"
     Sadako "I... I didn't mean to pull you through. The television sometimes... acts on its own."
@@ -311,7 +320,6 @@ label sadako_route:
             
         "Are you going to turn me in?":
             $ sadako_affection -= 1
-            show sadako scary
             Sadako "T-turn you in? I... I should, but..."
             Sadako "I've always been different from other demons. Too... too soft, they say."
             
@@ -325,11 +333,9 @@ label sadako_route:
     if sadako_affection < 0:
         Sadako "Y-your suspicion is understandable... but dangerous here."
         Sadako "In this world, trust is the only currency that matters."
-        show sadako scary
     else:
         Sadako "I... I've been watching your world through the television for so long."
         Sadako "Maybe helping you is my chance to do something... meaningful."
-        show sadako neutral
     
     menu:
         "I trust you to help me.":
@@ -339,7 +345,6 @@ label sadako_route:
             
         "How do I know you won't betray me?":
             $ sadako_affection -= 1
-            show sadako scary
             Sadako "Y-you don't... but what choice do you have?"
             Sadako "The demon lords will find you eventually if you stay here alone."
             
@@ -377,7 +382,7 @@ label sadako_route:
 
 label oni_route:
     scene bg cabin_oni
-    show oni neutral
+    show oni playful
     with fade
     
     play sound "assets/music/sfx/door_open.mp3"
@@ -400,6 +405,7 @@ label oni_route:
             show oni scary
             Oni "Bold words for someone so tiny! I like your spirit!"
             Oni "But maybe you should save that courage for when you really need it!"
+            show oni neutral
             
         "I need help getting back to my world":
             $ oni_affection += 2
@@ -409,27 +415,28 @@ label oni_route:
     narrator "The oni circles around you, her eyes sparkling with excitement."
     
     if oni_affection < 0:
+        show oni neutral
         Oni "Your bravado is cute, but dangerous in this world."
         Oni "The demon lords don't play nice with humans who think they're tough."
-        show oni scary
     else:
         Oni "You know, humans are usually so... boring."
         Oni "But you, you might actually be fun to play with!"
-        show oni neutral
     
     menu:
         "I'll help you if you help me":
+            show oni playful
             $ oni_affection += 2
             Oni "A deal? Now that's what I call a good game!"
             Oni "But what could a little human possibly offer an oni warrior?"
             
         "Please, I just want to go home":
             $ oni_affection -= 1
-            show oni scary
+            show oni playful
             Oni "Aw, don't be such a scaredy-cat!"
             Oni "Where's your sense of adventure?"
             
         "I can prove my worth":
+            show oni playful
             Oni "Prove your worth? Now that's what I like to hear!"
             Oni "Let's make a game of it!"
     
@@ -463,7 +470,7 @@ label oni_route:
 
 label kitsune_route:
     scene bg spirit
-    show kitsune neutral
+    show kitsune mischievous
     with fade
     
     play music "assets/music/bg/mystical_flute.mp3" loop #more playful
@@ -482,7 +489,6 @@ label kitsune_route:
             
         "Are you going to turn me in?":
             $ kitsune_affection -= 1
-            show kitsune scary
             Kitsune "Turn you in? Now where's the fun in that?"
             Kitsune "I much prefer to play with my prey before deciding their fate~"
             
@@ -496,25 +502,26 @@ label kitsune_route:
     if kitsune_affection < 0:
         Kitsune "Your suspicion is wise, but perhaps misplaced."
         Kitsune "In this world, sometimes the greatest danger comes from those you trust least~"
-        show kitsune scary
+        show kitsune neutral
     else:
         Kitsune "You know, humans are usually so... predictable."
         Kitsune "But you, you're different. I wonder what games we could play together~"
-        show kitsune neutral
     
     menu:
         "I'll make a deal with you":
+            show kitsune mischievous
             $ kitsune_affection += 2
             Kitsune "A deal? Now you're speaking my language!"
             Kitsune "But be careful what you wish for, little human~"
             
         "I don't trust you":
             $ kitsune_affection -= 1
-            show kitsune scary
+            show kitsune neutral
             Kitsune "Smart, but perhaps too smart for your own good."
             Kitsune "The demon lords don't take kindly to humans who think they're clever~"
             
         "What do you want from me?":
+            show kitsune mischievous
             Kitsune "What do I want? Perhaps I just want to see how this story unfolds."
             Kitsune "Or perhaps I'm bored of the usual games in the demon world~"
     
@@ -524,14 +531,15 @@ label kitsune_route:
     
     menu:
         "Trust the kitsune's plan":
+            show kitsune neutral
             $ kitsune_affection += 2
             Kitsune "Good choice. Let's make this interesting~"
             
         "Try to escape alone":
             $ kitsune_affection -= 2
-            show kitsune scary
             Kitsune "Running? How predictable. And how... disappointing."
             Kitsune "The demon lords will make an example of you~"
+            show kitsune scary
             narrator "Before you can react, the kitsune's hand strikes your temple."
             narrator "The last thing you see is her cold, determined expression as darkness claims you."
             jump kitsune_death
@@ -588,13 +596,15 @@ label yuki_marriage:
 
 label yuki_death:
     scene bg portal
-    show yuki scary
+    show yuki neutral
     with fade
 
     play music "assets/music/bg/bad_ending.mp3" loop
     
     YukiOnna "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     YukiOnna "The demon lords will decide your fate."
+
+    show yuki scary
     
     scene bg bad
 
@@ -656,20 +666,22 @@ label sadako_marriage:
 
 label sadako_death:
     scene bg portal
-    show sadako scary
+    show sadako neutral
     with fade
 
     play music "assets/music/bg/bad_ending.mp3" loop
     
     Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Sadako "The demon lords will decide your fate."
+
+    show yuki scary
     
-    narrator "She leads you deeper into the cabin, her hand cold against yours."
-    narrator "The television static grows louder as you enter a secluded room."
+    narrator "She leads you deeper into the cave, her hand cold against yours."
+    narrator "A television static can be heard as you enter a secluded area."
     
     scene bg bad
 
-    Sadako "This is where I bring those who disappoint me."
+    Sadako "I-I'm sorry, but....."
     Sadako "Your life force will sustain me through the long years."
     
     narrator "Before you can react, her hand reaches through the television screen."
@@ -724,15 +736,17 @@ label oni_marriage:
 
 label oni_death:
     scene bg portal
-    show oni scary
+    show oni neutral
     with fade
 
     play music "assets/music/bg/bad_ending.mp3" loop
     
     Oni "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Oni "The demon lords will decide your fate."
+
+    show oni scary
     
-    narrator "She leads you deeper into the cabin, her grip firm on your arm."
+    narrator "She leads you deeper into the cave, her grip firm on your arm."
     narrator "The air grows thick with demonic energy as you enter a secluded chamber."
     
     scene bg bad
@@ -777,7 +791,7 @@ label kitsune_marriage:
     Kitsune "It's been a year since we escaped the demon world."
     Kitsune "I never thought I'd find someone who could keep up with my tricks and games."
     
-    narrator "She looks at you with a playful smile, her tails now hidden under a stylish coat."
+    narrator "She looks at you with a playful smile, her tails now hidden."
     
     Kitsune "Will you spend the rest of your life with me?"
     Kitsune "I promise to keep life interesting, as long as you play along with my games."
@@ -792,15 +806,17 @@ label kitsune_marriage:
 
 label kitsune_death:
     scene bg portal
-    show kitsune scary
+    show kitsune neutral
     with fade
 
     play music "assets/music/bg/bad_ending.mp3" loop
     
     Kitsune "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Kitsune "The demon lords will decide your fate."
+
+    show kitsune scary
     
-    narrator "She leads you deeper into the cabin, her hand deceptively gentle on yours."
+    narrator "She leads you deeper into the cave, her hand deceptively gentle on yours."
     narrator "The air grows thick with foxfire as you enter a secluded chamber."
     
     scene bg bad
