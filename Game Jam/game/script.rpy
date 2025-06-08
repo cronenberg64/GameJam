@@ -152,7 +152,7 @@ label tv_encounter:
             
         narrator "The world fades to black..."
         stop sound fadeout 1.0
-        play voice "assets/music/voice/s_happy.m4a"
+        play voice "assets/music/voice/s_happy.mp3"
         jump sadako_route
     else:
         narrator "The old television flickers to life with a burst of static."
@@ -164,7 +164,7 @@ label tv_encounter:
         
         narrator "The world fades to black..."
         stop sound fadeout 1.0
-        play voice "assets/music/voice/o_happy.m4a"
+        play voice "assets/music/voice/o_happy.mp3"
         jump oni_route
 
 # Cave/Weather Encounter
@@ -184,7 +184,7 @@ label cave_encounter:
     
     narrator "Everything goes dark..."
     stop music fadeout 1.0
-    play voice "assets/music/voice/k_happy.m4a"
+    play voice "assets/music/voice/k_happy.mp3"
     jump kitsune_route
 
 label weather_encounter:
@@ -207,7 +207,7 @@ label weather_encounter:
     
     narrator "The cold overwhelms you..."
     stop music fadeout 1.0
-    play voice "assets/music/voice/y_happy.m4a"
+    play voice "assets/music/voice/y_happy.mp3"
     jump yuki_route
 
 #################################################################
@@ -252,14 +252,14 @@ label yuki_route:
         YukiOnna "But perhaps there's still time to change your fate."
     else:
         show yuki happy
-        play voice "assets/music/voice/y_happy.m4a"
+        play voice "assets/music/voice/y_happy.mp3"
         YukiOnna "I've been watching the human world for centuries, fascinated by its warmth and life."
         YukiOnna "Maybe helping you is my chance to do something good."
     
     menu:
         "I trust you to help me.":
             show yuki happy
-            play voice "assets/music/voice/y_happy.m4a"
+            play voice "assets/music/voice/y_happy.mp3"
             $ yuki_affection += 2
             YukiOnna "Your trust... it's been so long since anyone trusted me."
             YukiOnna "I'll help you find a way back, but we must be careful."
@@ -290,7 +290,7 @@ label yuki_route:
         "Try to run":
             $ yuki_affection -= 2
             show yuki scary
-            play voice "assets/music/voice/y_angry.m4a"
+            play voice "assets/music/voice/y_angry.mp3"
             YukiOnna "Fool! You'll get us both killed!"
             YukiOnna "The demon lords will show no mercy to traitors."
             narrator "Before you can react, Yuki-onna's hand strikes your temple."
@@ -374,7 +374,7 @@ label sadako_route:
             
         "Try to run":
             $ sadako_affection -= 2
-            play voice "assets/music/voice/s_angry.m4a"
+            play voice "assets/music/voice/s_angry.mp3"
             show sadako scary
             Sadako "N-no! You'll get us both killed!"
             Sadako "The demon lords will show no mercy to traitors."
@@ -414,7 +414,7 @@ label oni_route:
             
         "I can handle myself":
             $ oni_affection -= 1
-            play voice "assets/music/voice/o_angry.m4a"
+            play voice "assets/music/voice/o_angry.mp3"
             show oni scary
             Oni "Bold words for someone so tiny! I like your spirit!"
             Oni "But maybe you should save that courage for when you really need it!"
@@ -438,7 +438,7 @@ label oni_route:
     menu:
         "I'll help you if you help me":
             show oni playful
-            play voice "assets/music/voice/o_happy.m4a"
+            play voice "assets/music/voice/o_happy.mp3"
             $ oni_affection += 2
             Oni "A deal? Now that's what I call a good game!"
             Oni "But what could a little human possibly offer an oni warrior?"
@@ -446,13 +446,13 @@ label oni_route:
         "Please, I just want to go home":
             $ oni_affection -= 1
             show oni playful
-            play voice "assets/music/voice/o_angry.m4a"
+            play voice "assets/music/voice/o_angry.mp3"
             Oni "Aw, don't be such a scaredy-cat!"
             Oni "Where's your sense of adventure?"
             
         "I can prove my worth":
             show oni playful
-            play voice "assets/music/voice/o_happy.m4a"
+            play voice "assets/music/voice/o_happy.mp3"
             Oni "Prove your worth? Now that's what I like to hear!"
             Oni "Let's make a game of it!"
     
@@ -468,7 +468,7 @@ label oni_route:
         "Try to hide":
             $ oni_affection -= 2
             show oni scary
-            play voice "assets/music/voice/o_angry.m4a"
+            play voice "assets/music/voice/o_angry.mp3"
             Oni "Hiding? Where's the fun in that?"
             Oni "The demon lords will make an example of you."
             narrator "All of a sudden, the oni appears in front of you and strikes your temple."
@@ -527,7 +527,7 @@ label kitsune_route:
     menu:
         "I'll make a deal with you":
             show kitsune mischievous
-            play voice "assets/music/voice/k_happy.m4a"
+            play voice "assets/music/voice/k_happy.mp3"
             $ kitsune_affection += 2
             Kitsune "A deal? Now you're speaking my language!"
             Kitsune "But be careful what you wish for, little human~"
@@ -540,7 +540,7 @@ label kitsune_route:
             
         "What do you want from me?":
             show kitsune mischievous
-            play voice "assets/music/voice/k_happy.m4a"
+            play voice "assets/music/voice/k_happy.mp3"
             Kitsune "What do I want? Perhaps I just want to see how this story unfolds."
             Kitsune "Or perhaps I'm bored of the usual games in the demon world~"
     
@@ -558,7 +558,7 @@ label kitsune_route:
             $ kitsune_affection -= 2
             Kitsune "Running? How predictable. And how... disappointing."
             Kitsune "The demon lords will make an example of you~"
-            play voice "assets/music/voice/k_angry.m4a"
+            play voice "assets/music/voice/k_angry.mp3"
             show kitsune scary
             narrator "Before you can react, the kitsune's hand strikes your temple."
             narrator "The last thing you see is her cold, determined expression as darkness claims you."
@@ -598,7 +598,7 @@ label yuki_marriage:
     show yuki happy
     with fade
     
-    play voice "assets/music/voice/y_happy.m4a"
+    play voice "assets/music/voice/y_happy.mp3"
     YukiOnna "It's been a year since we escaped the demon world."
     YukiOnna "I never thought I'd find happiness in the human world, but you showed me the way."
     
@@ -626,7 +626,7 @@ label yuki_death:
     YukiOnna "The demon lords will decide your fate."
 
     show yuki scary
-    play voice "assets/music/voice/y_angry.m4a"
+    play voice "assets/music/voice/y_angry.mp3"
     
     scene bg bad
 
@@ -670,7 +670,7 @@ label sadako_marriage:
     show sadako shy
     with fade
 
-    play voice "assets/music/voice/s_happy.m4a"
+    play voice "assets/music/voice/s_happy.mp3"
     
     Sadako "It's been a year since we escaped the demon world."
     Sadako "I never thought I'd find someone who could see past my... unusual nature."
@@ -698,7 +698,7 @@ label sadako_death:
     Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Sadako "The demon lords will decide your fate."
 
-    play voice "assets/music/voice/s_angry.m4a"
+    play voice "assets/music/voice/s_angry.mp3"
     show sadako scary
     
     narrator "She leads you deeper into the cave, her hand cold against yours."
@@ -743,7 +743,7 @@ label oni_marriage:
     show oni playful
     with fade
     
-    play voice "assets/music/voice/o_happy.m4a"
+    play voice "assets/music/voice/o_happy.mp3"
 
     Oni "It's been a year since we escaped the demon world."
     Oni "I never thought I'd find someone who could match my strength and spirit."
@@ -772,7 +772,7 @@ label oni_death:
     Oni "The demon lords will decide your fate."
 
     show oni scary
-    play voice "assets/music/voice/o_angry.m4a"
+    play voice "assets/music/voice/o_angry.mp3"
     
     narrator "She leads you deeper into the cave, her grip firm on your arm."
     narrator "The air grows thick with demonic energy as you enter a secluded chamber."
@@ -816,7 +816,7 @@ label kitsune_marriage:
     show kitsune mischievous
     with fade
 
-    play voice "assets/music/voice/k_happy.m4a"
+    play voice "assets/music/voice/k_happy.mp3"
     
     Kitsune "It's been a year since we escaped the demon world."
     Kitsune "I never thought I'd find someone who could keep up with my tricks and games."
@@ -845,7 +845,7 @@ label kitsune_death:
     Kitsune "The demon lords will decide your fate."
 
     show kitsune scary
-    play voice "assets/music/voice/k_angry.m4a"
+    play voice "assets/music/voice/k_angry.mp3"
     
     narrator "She leads you deeper into the cave, her hand deceptively gentle on yours."
     narrator "The air grows thick with foxfire as you enter a secluded chamber."
@@ -896,7 +896,7 @@ label credit:
     
     centered "{color=#ffffff}CREDITS{/color}{w=2.0}{nw}"
     centered "{color=#ffffff}Game Development{/color}{w=1.0}{nw}"
-    centered "{color=#ffffff}Game Mechanics: Faiq and Jonathan{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Game Mechanics and Design: Faiq and Jonathan{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}Story: Faiq{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}GUI: Jonathan{/color}{w=1.0}{nw}"
     
@@ -905,10 +905,33 @@ label credit:
     
     centered "{color=#ffffff}Music & Sound{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}SFX & Background Music: Chad{/color}{w=1.0}{nw}"
+
+    centered "{color=#ffffff}Inspired By{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Doki Doki Literature Club{/color}{w=1.0}{nw}"
     
     centered "{color=#ffffff}Special Thanks{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}Ren'Py Engine{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}All our team members{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}And you, for playing our game!{/color}{w=2.0}{nw}"
+
+    centered "{color=#ffffff}
+    Music Credits: \n
+    Energetic Drums Opener by Sound Gallery By Dmitry Taras \n
+    Forest Serenity by NISØ \n
+    It's a Mystery by Augustin C \n
+    Mystical Ancient Japanese Flute by MemoryMusic \n
+    Mystic Scary Music by DepasRec \n
+    Romantic Sentimental Wedding Music by Nargo \n
+    Royal Song_guest by 4AM JAM \n
+    Scary Investigation by RealTunesStudio \n
+    Summer Romance by Christian Petermann \n \n
+
+    Sound Effect Credits: \n
+    door slam angrily by freesound_community \n
+    GravelFootstep001 by freesound_community \n
+    Open door sound by hasin2004 \n
+    TVon by freesound_community \n
+    TV static noise by yourugor \n
+    {/color}{w=2.0}{nw}"
     
     return
