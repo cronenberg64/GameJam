@@ -81,10 +81,15 @@ define gui.button_text_insensitive_color = gui.insensitive_color
 define gui.button_text_xalign = 0.0
 
 ## Custom button backgrounds from your assets
-define gui.button_background = "gui/button/button_idle.png"
-define gui.button_hover_background = "gui/button/button_hover.png"
-define gui.button_selected_background = "gui/button/button_selected.png"
-define gui.button_insensitive_background = "gui/button/button_insensitive.png"
+define gui.button_background = "gui/button/gallerybutton_idle_blank.png"
+define gui.button_hover_background = "gui/button/gallerybutton_selecthover_blank.png"
+define gui.button_selected_background = "gui/button/gallerybutton_selecthover_blank.png"
+define gui.button_insensitive_background = "gui/button/gallerybutton_selecthover_blank.png"
+
+define gui.quick_button_background = "gui/button/gallerybutton_idle_blank.png"
+define gui.quick_button_hover_background = "gui/button/gallerybutton_selecthover_blank.png"
+define gui.quick_button_selected_background = "gui/button/gallerybutton_selecthover_blank.png"
+define gui.quick_button_insensitive_background = "gui/button/gallerybutton_selecthover_blank.png"
 
 ## Button variants
 define gui.radio_button_borders = Borders(27, 6, 6, 6)
@@ -104,13 +109,12 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#fff7d6'  # Light cream for readability
+define gui.choice_button_text_idle_color = '#fff7d6'  # Light cream for readabilityAdd commentMore actions
 define gui.choice_button_text_hover_color = '#000000'  # Lighter cream on hover
 define gui.choice_button_text_insensitive_color = '#7070707f'
 ## New background colors for better contrast
-define gui.choice_button_idle_background = '#7c4a03'  # Dark brown
+define gui.choice_button_idle_background = '#7c4a03'  # Dark brownAdd commentMore actions
 define gui.choice_button_hover_background = '#a86c1d'  # Lighter brown
-
 ## File Slot Buttons ###########################################################
 define gui.slot_button_width = 414
 define gui.slot_button_height = 309
@@ -356,7 +360,7 @@ init python:
                 "borders": gui.button_borders,
                 "text_size": gui.interface_text_size,
                 "text_font": gui.interface_text_font
-            }
+            },
         }
         return styles.get(button_style, styles["standard"])
 

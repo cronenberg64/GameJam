@@ -1,24 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 193, in script
-    Yuki "You're not supposed to be here, human."
-Exception: Sayer 'Yuki' is not defined.
+  File "renpy/common/00start.rpy", line 195, in script
+    python:
+  File "renpy/common/00start.rpy", line 196, in <module>
+    renpy.execute_default_statement(True)
+  File "game/screens.rpy", line 294, in execute_default
+    default quick_menu = True
+Exception: store.quick_menu is being given a default a second time.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 193, in script
-    Yuki "You're not supposed to be here, human."
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 2586, in execute
-    Say.execute(self)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 583, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 472, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 'Yuki' is not defined.
+  File "renpy/common/00start.rpy", line 195, in script
+    python:
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 834, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1187, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00start.rpy", line 196, in <module>
+    renpy.execute_default_statement(True)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/exports/statementexports.py", line 372, in execute_default_statement
+    i.execute_default(start)
+  File "game/screens.rpy", line 294, in execute_default
+    default quick_menu = True
+Exception: store.quick_menu is being given a default a second time.
 
 macOS-15.5-arm64-arm-64bit arm64
 Ren'Py 8.3.7.25031702
 Game Jam 1.0
-Sun Jun  8 07:03:28 2025
+Sun Jun  8 10:51:11 2025

@@ -3,10 +3,10 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define YukiOnna = Character("Yuki-onna", color="#a8d8ea")
-define Sadako = Character("Sadako", color="#aa96da") 
-define Oni = Character("Oni", color="#ff9a9e")
-define Kitsune = Character("Kitsune", color="#feca57")
+define YukiOnna = Character("Yuki Onna", color="#a8d8ea")
+define Sadako = Character("Sadako", color="#b190ff") 
+define Oni = Character("Oni", color="#d10007")
+define Kitsune = Character("Kitsune", color="#f7bc3c")
 define narrator = Character(None, color="#ffffff")
 
 # Character image definitions
@@ -26,13 +26,23 @@ define narrator = Character(None, color="#ffffff")
 # image kitsune scary = "kitsune_scary.png"
 # image kitsune mischievous = "kitsune_mischievous.png"
 
+transform bg_transform:
+    fit "cover"
+
 # Background definitions
-image bg room = "bg_room.png"
-image bg forest = "bg_forest.png"
-image bg cabin = "bg_cabin.png"
-image bg cave = "bg_cave.png"
-image bg snowy_path = "bg_snowy_path.png"
-image bg tv_static = "bg_tv_static.png"
+image bg room = "assets/illustrations/bg/myroom.png"
+image bg forest = "assets/illustrations/bg/forest_1.jpg"
+image bg tv = "assets/illustrations/bg/cabin_2.png"
+image bg cave = "assets/illustrations/bg/cave.png" ###
+image bg snowy_path = "assets/illustrations/bg/snow_path.png"
+image bg spirit = "assets/illustrations/bg/spirit_2.png"
+image bg cabin_oni = "assets/illustrations/bg/cabin_oni.png"
+image bg cabin_creepy = "assets/illustrations/bg/cabin_route.png"
+image bg happy = "assets/illustrations/bg/happy.png"
+image bg neutral = "assets/illustrations/bg/back.png"
+image bg bad = "assets/illustrations/bg/spirit_3.png"
+image bg portal = "assets/illustrations/bg/portal.png"
+image bg corridor = "assets/illustrations/bg/running.png"
 image bg black = "#000000"
 
 # Variables to track choices
@@ -48,7 +58,7 @@ default kitsune_affection = 0
 # The game starts here.
 label start:
     scene bg room
-    play music "assets/music/bg/ambient_summer.mp3" fadein 1.0 loop
+    play music "assets/music/bg/ambient_summer.mp3" loop
     
     narrator "Summer vacation has finally arrived, and you've been planning this hiking trip for months."
     narrator "The weather forecast shows perfect conditions, and you're eager to escape the city heat."
@@ -70,40 +80,44 @@ label start:
             jump oeyama_path
 
 label akagi_path:
-    scene bg forest
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
+    scene bg forest at bg_transform
+    play music "assets/music/bg/ambient_forest.mp3" loop #change
     
     narrator "You arrive at Akagi Mountain as the morning mist still clings to the trees."
     narrator "The trail is well-marked, but something feels different about this place."
     narrator "After hiking for an hour, you spot an old wooden cabin through the trees."
     
-    scene bg cabin
+    play sound "assets/music/sfx/door_open.mp3"
+    scene bg tv at bg_transform
     narrator "The cabin looks abandoned but well-preserved, as if someone left just yesterday."
-    narrator "The door creaks open at your touch, revealing a simple interior with just a couch and an old television."
+    narrator "The door creaks open at your touch, revealing a warm interior with low wooden table, woven floor cushion, and a vintage television."
     
     menu:
         "What should I do?"
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            play sound "assets/music/sfx/tv_on.mp3"
             stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            play sound "assets/music/sfx/door_open.mp3" fadein 1.0
+            play sound "assets/music/sfx/door_shut.mp3" fadein 1.0 fadeout 1.0
             stop music fadeout 1.0
             jump cave_encounter
 
 label oeyama_path:
-    scene bg forest
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop
+    scene bg forest at bg_transform
+    play music "assets/music/bg/ambient_forest.mp3" loop
     
     narrator "Oeyama Mountain greets you with dense forests and winding paths."
     narrator "Local legends speak of oni who once ruled these peaks, but surely those are just stories..."
-    narrator "After hiking for an hour, you discover the same mysterious cabin."
+    narrator "After hiking for an hour, you spot an old wooden cabin through the trees."
     
-    scene bg cabin
-    narrator "Inside, you find the same sparse furnishing - a couch and an old television."
+    scene bg tv at bg_transform
+    narrator "The door creaks open at your touch, revealing a warm interior with low wooden table, woven floor cushion, and a vintage television."
     narrator "But something feels different here, more charged with energy."
     
     menu:
@@ -111,45 +125,51 @@ label oeyama_path:
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            play sound "assets/music/sfx/tv_on.mp3" loop
             stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            play sound "assets/music/sfx/door_open.mp3" fadein 1.0
+            play sound "assets/music/sfx/door_shut.mp3" fadein 1.0 fadeout 1.0
             stop music fadeout 1.0
             jump weather_encounter
 
 # TV Encounter - leads to Sadako route
 label tv_encounter:
-    scene bg tv_static
-    play sound "tv_static.wav"
-    
-    narrator "The old television flickers to life with a burst of static."
-    narrator "Through the white noise, a shadowy figure begins to take shape."
-    narrator "Your heart races as the figure becomes clearer... it's a woman with long, dark hair."
-    
-    scene bg black
-    with fade
-    
-    narrator "The world fades to black..."
+    scene bg tv at bg_transform
+    play sound "assets/music/sfx/tv_stat.mp3" loop
     
     # Determine which character appears based on mountain choice
     if mountain_choice == "akagi":
-        stop music fadeout 1.0
+        narrator "The old television flickers to life with a burst of static."
+        narrator "Through the white noise, a shadowy figure begins to take shape."
+        narrator "Your heart races as the figure becomes clearer... it's a woman with long, dark hair."
+
+        scene bg black
+        with fade
+            
+        narrator "The world fades to black..."
+        stop sound fadeout 1.0
         jump sadako_route
     else:
-        stop music fadeout 1.0
+        scene bg black
+        with fade
+        
+        narrator "The world fades to black..."
+        stop sound fadeout 1.0
         jump oni_route
 
 # Cave/Weather Encounter
 label cave_encounter:
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
-    scene bg forest
+    play music "assets/music/bg/haunting_piano.mp3" loop #change
+    scene bg forest at bg_transform
     narrator "You leave the cabin behind and continue deeper into Akagi Mountain."
     narrator "The path becomes steeper, and you notice the temperature dropping."
     narrator "Ahead, you spot a cave entrance partially hidden by hanging vines."
     
-    scene bg cave
+    scene bg cave###
     narrator "The cave is surprisingly deep, with an otherworldly blue glow emanating from within."
     narrator "As you step inside, your breath becomes visible in the suddenly frigid air."
     
@@ -158,12 +178,16 @@ label cave_encounter:
     
     narrator "Everything goes dark..."
     stop music fadeout 1.0
-    jump yuki_route
+    jump kitsune_route
 
 label weather_encounter:
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
-    scene bg forest
+    play music "assets/music/bg/haunting_piano.mp3" loop #change
+    scene bg forest at bg_transform
     narrator "You decide to continue exploring Oeyama Mountain."
+
+    scene bg black
+    with fade
+
     narrator "Suddenly, the sunny sky darkens, and snow begins to fall despite it being summer."
     narrator "The temperature drops rapidly, and an eerie silence fills the forest."
     
@@ -176,16 +200,18 @@ label weather_encounter:
     
     narrator "The cold overwhelms you..."
     stop music fadeout 1.0
-    jump kitsune_route
+    jump yuki_route
 
+#################################################################
 # Character Routes - Each approximately 5 minutes of content
+#################################################################
 
 label yuki_route:
-    scene bg cave
+    scene bg spirit
     show yuki neutral
     with fade
     
-    play music "assets/music/bg/mystery_melody.mp3" fadein 1.0 loop
+    play music "assets/music/bg/mystery_melody.mp3" loop
     
     narrator "You awaken in a strange cave, but something feels different about this place."
     narrator "The air is thick with magic, and the walls seem to pulse with an otherworldly energy."
@@ -233,6 +259,7 @@ label yuki_route:
             YukiOnna "Perhaps I'm tired of the eternal winter of the demon world."
             YukiOnna "Or perhaps I just want to believe there's still good in this world."
     
+    scene bg corridor
     narrator "She leads you through winding tunnels, her ice magic creating a path through the darkness."
     narrator "Suddenly, you hear voices echoing from ahead."
     
@@ -252,19 +279,23 @@ label yuki_route:
             narrator "The last thing you see is her cold, determined expression as darkness claims you."
             jump yuki_death
     
-    if yuki_affection >= 3:
+    if yuki_affection > 3:
         stop music fadeout 1.0
         jump yuki_marriage
+    elif yuki_affection <= 3 and yuki_affection >= 0:
+        stop music fadeout 1.0
+        jump neutral_ending
     else:
         stop music fadeout 1.0
         jump yuki_death
 
 label sadako_route:
-    scene bg cabin
+    scene bg cabin_creepy at bg_transform
     show sadako neutral
     with fade
     
-    play music "assets/music/bg/haunting_piano.mp3" fadein 1.0 loop
+    play sound "assets/music/sfx/tv_stat.mp3" fadein 1.0 fadeout 1.0
+    play music "assets/music/bg/haunting_piano.mp3" loop
     
     narrator "The television's static clears to reveal a dark, otherworldly realm."
     narrator "Through the screen, a woman with long dark hair reaches out to you."
@@ -330,23 +361,30 @@ label sadako_route:
             show sadako scary
             Sadako "N-no! You'll get us both killed!"
             Sadako "The demon lords will show no mercy to traitors."
+            narrator "Before you can react, Sadako's hand strikes your temple."
+            narrator "The last thing you see is her cold, determined expression as darkness claims you."
+            jump sadako_death
     
-    if sadako_affection >= 3:
+    if sadako_affection > 3:
         stop music fadeout 1.0
         jump sadako_marriage
+    elif sadako_affection <= 3 and sadako_affection >= 0:
+        stop music fadeout 1.0
+        jump neutral_ending
     else:
         stop music fadeout 1.0
         jump sadako_death
 
 label oni_route:
-    scene bg cabin
+    scene bg cabin_oni
     show oni neutral
     with fade
     
-    play music "assets/music/bg/energetic_drums.mp3" fadein 1.0 loop
+    play sound "assets/music/sfx/door_open.mp3"
+    play music "assets/music/bg/energetic_drums.mp3" loop
     
     narrator "The cabin door bursts open, revealing a massive figure silhouetted against the demon world's crimson sky."
-    narrator "A powerful oni warrior stands before you, his horns casting long shadows in the dim light."
+    narrator "A powerful oni warrior stands before you, her horns casting long shadows in the dim light."
     
     Oni "Oho! What do we have here? A little human lost in the demon world?"
     Oni "This is going to be fun! The demon lords will be so surprised!"
@@ -368,7 +406,7 @@ label oni_route:
             Oni "Help? An oni helping a human? That would be a first!"
             Oni "But you know what? I've always wanted to try something new!"
     
-    narrator "The oni circles around you, his eyes sparkling with excitement."
+    narrator "The oni circles around you, her eyes sparkling with excitement."
     
     if oni_affection < 0:
         Oni "Your bravado is cute, but dangerous in this world."
@@ -409,22 +447,28 @@ label oni_route:
             show oni scary
             Oni "Hiding? Where's the fun in that?"
             Oni "The demon lords will make an example of you."
+            narrator "All of a sudden, the oni appears in front of you and strikes your temple."
+            narrator "The last thing you see is his cold, determined expression as darkness claims you."
+            jump oni_death
     
-    if oni_affection >= 3:
+    if oni_affection > 3:
         stop music fadeout 1.0
         jump oni_marriage
+    elif oni_affection <= 3 and oni_affection > 0:
+        stop music fadeout 1.0
+        jump neutral_ending
     else:
         stop music fadeout 1.0
         jump oni_death
 
 label kitsune_route:
-    scene bg cabin
+    scene bg spirit
     show kitsune neutral
     with fade
     
-    play music "assets/music/bg/mystical_flute.mp3" fadein 1.0 loop #more playful
+    play music "assets/music/bg/mystical_flute.mp3" loop #more playful
     
-    narrator "A swirl of foxfire illuminates the cabin, revealing a beautiful woman with fox ears and multiple tails."
+    narrator "A swirl of foxfire illuminates the cave, revealing a beautiful woman with fox ears and multiple tails."
     narrator "She materializes from the flames, her golden eyes studying you with amusement."
     
     Kitsune "My, my, what do we have here? A little human lost in the demon world?"
@@ -488,10 +532,16 @@ label kitsune_route:
             show kitsune scary
             Kitsune "Running? How predictable. And how... disappointing."
             Kitsune "The demon lords will make an example of you~"
+            narrator "Before you can react, the kitsune's hand strikes your temple."
+            narrator "The last thing you see is her cold, determined expression as darkness claims you."
+            jump kitsune_death
     
-    if kitsune_affection >= 3:
+    if kitsune_affection > 3:
         stop music fadeout 1.0
         jump kitsune_marriage
+    elif kitsune_affection <= 3 and kitsune_affection >= 0:
+        stop music fadeout 1.0
+        jump neutral_ending
     else:
         stop music fadeout 1.0
         jump kitsune_death
@@ -499,9 +549,11 @@ label kitsune_route:
 # Marriage and Death Endings - Two per character
 
 label yuki_marriage:
-    scene bg cave
+    scene bg portal
     show yuki neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" loop
     
     YukiOnna "I've found a way to open a portal to your world."
     YukiOnna "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -512,9 +564,9 @@ label yuki_marriage:
     scene bg black
     with fade
     
-    centered "ONE YEAR LATER{w=2.0}{nw}"
+    centered "{color=#ffffff}ONE YEAR LATER{/color}{w=2.0}{nw}"
     
-    scene bg modern_city
+    scene bg happy at bg_transform
     show yuki happy
     with fade
     
@@ -529,19 +581,23 @@ label yuki_marriage:
     scene bg black
     with fade
     
-    centered "YUKI-ONNA MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have found eternal love in the warmth of winter."
+    centered "{color=#ffffff}YUKI-ONNA MARRIAGE ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}You have found eternal love in the warmth of winter.{/color}"
     
     jump credit
 
 label yuki_death:
-    scene bg cave
+    scene bg portal
     show yuki scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" loop
     
     YukiOnna "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     YukiOnna "The demon lords will decide your fate."
     
+    scene bg bad
+
     narrator "She leads you deeper into the cave, her hand cold against yours."
     narrator "The temperature drops further as you enter a secluded chamber."
     
@@ -555,15 +611,17 @@ label yuki_death:
     scene bg black
     with fade
     
-    centered "YUKI-ONNA DEATH ENDING{w=2.0}{nw}"
-    centered "Your warmth has become her eternal feast."
+    centered "{color=#ffffff}YUKI-ONNA DEATH ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}Your warmth has become her eternal feast.{/color}"
     
     jump credit
 
 label sadako_marriage:
-    scene bg cabin
+    scene bg portal
     show sadako neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" loop
     
     Sadako "I've found a way to open a portal to your world."
     Sadako "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -576,7 +634,7 @@ label sadako_marriage:
     
     centered "ONE YEAR LATER{w=2.0}{nw}"
     
-    scene bg modern_city
+    scene bg happy at bg_transform
     show sadako shy
     with fade
     
@@ -591,15 +649,17 @@ label sadako_marriage:
     scene bg black
     with fade
     
-    centered "SADAKO MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have found love in the space between worlds."
+    centered "{color=#ffffff}SADAKO MARRIAGE ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}You have found love in the space between worlds.{/color}"
     
     jump credit
 
 label sadako_death:
-    scene bg cabin
+    scene bg portal
     show sadako scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" loop
     
     Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Sadako "The demon lords will decide your fate."
@@ -607,6 +667,8 @@ label sadako_death:
     narrator "She leads you deeper into the cabin, her hand cold against yours."
     narrator "The television static grows louder as you enter a secluded room."
     
+    scene bg bad
+
     Sadako "This is where I bring those who disappoint me."
     Sadako "Your life force will sustain me through the long years."
     
@@ -617,35 +679,37 @@ label sadako_death:
     scene bg black
     with fade
     
-    centered "SADAKO DEATH ENDING{w=2.0}{nw}"
-    centered "Your life has become her eternal entertainment."
+    centered "{color=#ffffff}SADAKO DEATH ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}Your life has become her eternal entertainment.{/color}"
     
     jump credit
 
 label oni_marriage:
-    scene bg cabin
+    scene bg cabin_oni
     show oni neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" loop
     
     Oni "I've found a way to open a portal to your world."
     Oni "But I can't stay here anymore. The demon lords will hunt me for helping you."
     
-    narrator "He takes your hand, and together you step through the portal."
+    narrator "She takes your hand, and together you step through the portal."
     narrator "The familiar warmth of your world welcomes you both."
     
     scene bg black
     with fade
     
-    centered "ONE YEAR LATER{w=2.0}{nw}"
+    centered "{color=#ffffff}ONE YEAR LATER{/color}{w=2.0}{nw}"
     
-    scene bg modern_city
+    scene bg happy at bg_transform
     show oni playful
     with fade
     
     Oni "It's been a year since we escaped the demon world."
     Oni "I never thought I'd find someone who could match my strength and spirit."
     
-    narrator "He looks at you with a proud smile, his horns now hidden under a stylish hat."
+    narrator "She looks at you with a proud smile, her horns now hidden under a stylish hat."
     
     Oni "Will you spend the rest of your life with me?"
     Oni "I promise to protect you with all my strength, as long as you stand by my side."
@@ -653,41 +717,47 @@ label oni_marriage:
     scene bg black
     with fade
     
-    centered "ONI MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have found love in the strength of your bond."
+    centered "{color=#ffffff}ONI MARRIAGE ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}You have found love in the strength of your bond.{/color}"
     
     jump credit
 
 label oni_death:
-    scene bg cabin
+    scene bg portal
     show oni scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" loop
     
     Oni "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Oni "The demon lords will decide your fate."
     
-    narrator "He leads you deeper into the cabin, his grip firm on your arm."
+    narrator "She leads you deeper into the cabin, her grip firm on your arm."
     narrator "The air grows thick with demonic energy as you enter a secluded chamber."
     
+    scene bg bad
+
     Oni "This is where I bring those who disappoint me."
     Oni "Your strength will sustain me through the long battles to come."
     
-    narrator "Before you can react, his massive fist strikes your temple."
-    narrator "The last thing you see is his cold, determined expression as darkness claims you."
+    narrator "Before you can react, her massive fist strikes your temple."
+    narrator "The last thing you see is her cold, determined expression as darkness claims you."
     narrator "When you wake up, you're in a secluded training ground, the Oni watching over you."
     
     scene bg black
     with fade
     
-    centered "ONI DEATH ENDING{w=2.0}{nw}"
-    centered "Your strength has become his eternal power."
+    centered "{color=#ffffff}ONI DEATH ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}Your strength has become her eternal power.{/color}"
     
     jump credit
 
 label kitsune_marriage:
-    scene bg cabin
+    scene bg portal
     show kitsune neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" loop
     
     Kitsune "I've found a way to open a portal to your world."
     Kitsune "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -698,9 +768,9 @@ label kitsune_marriage:
     scene bg black
     with fade
     
-    centered "ONE YEAR LATER{w=2.0}{nw}"
+    centered "{color=#ffffff}ONE YEAR LATER{/color}{w=2.0}{nw}"
     
-    scene bg modern_city
+    scene bg happy at bg_transform
     show kitsune mischievous
     with fade
     
@@ -715,15 +785,17 @@ label kitsune_marriage:
     scene bg black
     with fade
     
-    centered "KITSUNE MARRIAGE ENDING{w=2.0}{nw}"
-    centered "You have found love in the joy of eternal play."
+    centered "{color=#ffffff}KITSUNE MARRIAGE ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}You have found love in the joy of eternal play.{/color}"
     
     jump credit
 
 label kitsune_death:
-    scene bg cabin
+    scene bg portal
     show kitsune scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" loop
     
     Kitsune "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Kitsune "The demon lords will decide your fate."
@@ -731,6 +803,8 @@ label kitsune_death:
     narrator "She leads you deeper into the cabin, her hand deceptively gentle on yours."
     narrator "The air grows thick with foxfire as you enter a secluded chamber."
     
+    scene bg bad
+
     Kitsune "This is where I bring those who disappoint me."
     Kitsune "Your life force will sustain me through the long years of games to come."
     
@@ -741,16 +815,16 @@ label kitsune_death:
     scene bg black
     with fade
     
-    centered "KITSUNE DEATH ENDING{w=2.0}{nw}"
-    centered "Your life has become her eternal plaything."
+    centered "{color=#ffffff}KITSUNE DEATH ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}Your life has become her eternal plaything.{/color}"
     
     jump credit
 
 label neutral_ending:
-    scene bg forest
+    scene bg neutral
     with fade
     
-    play music "assets/music/bg/ambient_forest.mp3" fadein 2.0 loop #change
+    play music "assets/music/bg/neutral_ending.mp3" loop #change
     
     narrator "You make your way back down the mountain, the strange encounters fading like a dream."
     narrator "The sun is beginning to set, casting long shadows through the trees."
@@ -764,8 +838,8 @@ label neutral_ending:
     scene bg black
     with fade
     
-    centered "NEUTRAL ENDING{w=2.0}{nw}"
-    centered "You have returned home, carrying the memories of your supernatural encounter."
+    centered "{color=#ffffff}NEUTRAL ENDING{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}You have returned home, carrying the memories of your supernatural encounter.{/color}"
     
     jump credit
 
@@ -790,7 +864,7 @@ label credit:
     centered "{color=#ffffff}All our team members{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}And you, for playing our game!{/color}{w=2.0}{nw}"
 
-    centered "{color=#ffffff}Third-Party Sources{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Third-Party Sources{/color}{w=1.0}{nw}" #Add commentMore actions
     centered "{color=#ffffff}Musics{/color}{w=1.0}{nw}"
     
     return
