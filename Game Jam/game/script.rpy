@@ -883,8 +883,5 @@ label credit:
     centered "{color=#ffffff}Ren'Py Engine{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}All our team members{/color}{w=1.0}{nw}"
     centered "{color=#ffffff}And you, for playing our game!{/color}{w=2.0}{nw}"
-
-    centered "{color=#ffffff}Third-Party Sources{/color}{w=1.0}{nw}" #Add commentMore actions
-    centered "{color=#ffffff}Musics{/color}{w=1.0}{nw}"
     
     return
