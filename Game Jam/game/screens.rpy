@@ -517,10 +517,7 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     style_prefix "game_menu"
 
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
+    add "gui/overlay/confirm.png"
 
     frame:
         style "game_menu_outer_frame"
@@ -946,8 +943,7 @@ style radio_vbox:
     spacing gui.pref_button_spacing
 
 style radio_button:
-    properties gui.button_properties("radio_button")
-    foreground "gui/button/gallerybutton1[prefix_]_idle.png" 
+    properties gui.button_properties("choice_button")
 
 style radio_button_text:
     properties gui.text_properties("radio_button")
@@ -956,8 +952,7 @@ style check_vbox:
     spacing gui.pref_button_spacing
 
 style check_button:
-    properties gui.button_properties("check_button")
-    foreground "gui/button/gallerybutton2_[prefix_]idle.png"
+    properties gui.button_properties("choice_button")
 
 style check_button_text:
     properties gui.text_properties("check_button")

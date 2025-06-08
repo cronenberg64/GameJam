@@ -39,7 +39,7 @@ define gui.title_text_size = 75
 ## Main and Game Menus #########################################################
 ## Using your custom backgrounds
 define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
+define gui.game_menu_background = "gui/overlay/game_menu.png"
 
 ## Dialogue ####################################################################
 ## Using your custom textbox, namebox, and click-to-continue
@@ -228,7 +228,7 @@ define gui.history_text_xalign = 0.0
 define gui.phone_background = "gui/phone.png"
 
 ## Overlay using your overlay assets ##########################################
-define gui.overlay_background = "gui/overlay/overlay.png"
+define gui.overlay_background = "gui/overlay/game_menu_.png"
 
 ## Window icon using your window_icon.png #####################################
 define config.window_icon = "gui/window_icon.png"
