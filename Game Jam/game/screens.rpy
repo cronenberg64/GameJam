@@ -9,28 +9,6 @@ init offset = -1
 ## Styles
 ################################################################################
 
-# Custom style for main menu buttons that rely on an image map
-style start_button:
-    # Set text color to fully transparent if your text is on the background image
-    color "#00000000"
-    hover_color "#00000000"
-    selected_color "#00000000"
-    insensitive_color "#00000000"
-
-    # Make the button background completely invisible
-    background None
-    hover_background None
-    selected_background None
-    insensitive_background None
-    idle_background None
-
-    # Align text in the center of the hotspot area (relevant if text is visible)
-    xalign 0.5
-    yalign 0.5
-    font gui.button_text_font
-    size gui.button_text_size
-
-
 style default:
     properties gui.text_properties()
     language gui.language
@@ -89,7 +67,7 @@ style slider:
 
 style vslider:
     xsize gui.slider_size
-    base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.vslider_tile)
+    base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/slider/vertical_[prefix_]thumb.png"
 
 
@@ -236,14 +214,7 @@ screen choice(items):
 
 style choice_vbox is vbox
 style choice_button is button
-style choice_button_text:
-    color gui.choice_button_text_idle_color
-    hover_color gui.choice_button_text_hover_color
-    selected_color gui.choice_button_text_hover_color
-    insensitive_color gui.choice_button_text_insensitive_color
-    outlines gui.button_text_outlines
-    kerning gui.button_text_kerning
-    xalign 0.5
+style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
@@ -252,10 +223,11 @@ style choice_vbox:
 
     spacing gui.choice_spacing
 
-style choice_button:
-    background gui.choice_button_idle_background
-    hover_background gui.choice_button_hover_background
-    selected_background gui.choice_button_hover_background
+style choice_button is default:
+    properties gui.button_properties("choice_button")
+
+style choice_button_text is default:
+    properties gui.text_properties("choice_button")
 
 
 ## Quick Menu screen ###########################################################
@@ -290,8 +262,6 @@ screen quick_menu():
 ## the player has not explicitly hidden the interface.
 init python:
     config.overlay_screens.append("quick_menu")
-
-default quick_menu = True
 
 style quick_button is default
 style quick_button_text is button_text
@@ -383,32 +353,76 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    # Define hotspots for each button on your main_menu.png
-    # YOU MUST ADJUST THESE xpos, ypos, xsize, ysize VALUES
-    # TO MATCH THE EXACT LOCATIONS AND DIMENSIONS OF YOUR BUTTONS
-    # WITHIN YOUR gui/main_menu.png IMAGE.
+    add gui.main_menu_background
 
-    # Start Button Hotspot
-    textbutton _("") style "start_button" action Start() xpos 700 ypos 400 xsize 500 ysize 80 focus_mask None
+    ## This empty frame darkens the main menu.
+    frame:
+        style "main_menu_frame"
 
-    # Load Game Button Hotspot
-    textbutton _("") style "start_button" action ShowMenu("load") xpos 700 ypos 500 xsize 500 ysize 80 focus_mask None
+    # Central functional buttons matching the background's theme
+    # Adjusted positions: moved further right by 200 and lower by 50
+    textbutton "":
+        style "start_menu_button"
+        xpos 1011
+        ypos 385
+        xsize 500
+        ysize 80
+        action Start()
 
-    # Options Button Hotspot
-    textbutton _("") style "start_button" action ShowMenu("options") xpos 700 ypos 600 xsize 500 ysize 80 focus_mask None
+    textbutton "":
+        style "load_menu_button"
+        xpos 1081
+        ypos 500
+        xsize 500
+        ysize 80
+        action ShowMenu("load")
 
-    # Quit Button Hotspot
-    textbutton _("") style "start_button" action Quit() xpos 700 ypos 700 xsize 500 ysize 80 focus_mask None
+    textbutton "":
+        style "options_menu_button"
+        xpos 1072
+        ypos 555
+        xsize 500
+        ysize 80
+        action ShowMenu("preferences")
 
-    # You can uncomment and adjust these if you want to keep the game title/version
+    textbutton "":
+        style "gallery_menu_button"
+        xpos 1072
+        ypos 610
+        xsize 500
+        ysize 80
+        action ShowMenu("gallery")
+
+    textbutton "":
+        style "about_menu_button"
+        xpos 1073
+        ypos 665
+        xsize 500
+        ysize 80
+        action ShowMenu("about")
+
+    textbutton "":
+        style "help_menu_button"
+        xpos 1103
+        ypos 720
+        xsize 500
+        ysize 80
+        action ShowMenu("help")
+
+    textbutton "":
+        style "quit_menu_button"
+        xpos 1101
+        ypos 775
+        xsize 500
+        ysize 80
+        action Quit(confirm=True)
+
+    # Remove the display of the game title and version from the main menu
     # if gui.show_name:
-
     #     vbox:
     #         style "main_menu_vbox"
-
     #         text "[config.name!t]":
     #             style "main_menu_title"
-
     #         text "[config.version]":
     #             style "main_menu_version"
 
@@ -1681,4 +1695,3 @@ screen gallery():
         textbutton _("Return"):
             style "return_button"
             action Return()
-## The ski
