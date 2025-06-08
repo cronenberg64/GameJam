@@ -1,119 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 1672, in execute
-    screen gallery():
-  File "game/screens.rpy", line 1672, in execute
-    screen gallery():
-  File "game/screens.rpy", line 1674, in execute
-    use game_menu(_("Gallery"), scroll="viewport"):
-  File "game/screens.rpy", line 466, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 466, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 475, in execute
-    frame:
-  File "game/screens.rpy", line 478, in execute
-    hbox:
-  File "game/screens.rpy", line 484, in execute
-    frame:
-  File "game/screens.rpy", line 487, in execute
-    if scroll == "viewport":
-  File "game/screens.rpy", line 489, in execute
-    viewport:
-  File "game/screens.rpy", line 498, in execute
-    vbox:
-  File "game/screens.rpy", line 501, in execute
-    transclude
-  File "game/screens.rpy", line 1674, in execute
-    use game_menu(_("Gallery"), scroll="viewport"):
-  File "game/screens.rpy", line 1675, in execute
-    vbox:
-SyntaxError: invalid syntax (<none>, line 1)
+  File "renpy/common/00start.rpy", line 195, in script
+    python:
+  File "renpy/common/00start.rpy", line 196, in <module>
+    renpy.execute_default_statement(True)
+  File "game/screens.rpy", line 294, in execute_default
+    default quick_menu = True
+Exception: store.quick_menu is being given a default a second time.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
-    python hide:
+  File "renpy/common/00start.rpy", line 195, in script
+    python:
   File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ast.py", line 834, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1187, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
-    python hide:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
-    ui.interact()
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/core.py", line 2218, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/core.py", line 2748, in interact_core
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  [Previous line repeated 1 more time]
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/screen.py", line 480, in visit_all
-    callback(self)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/core.py", line 2748, in <lambda>
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/screen.py", line 491, in per_interact
-    self.update()
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/display/screen.py", line 700, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 1672, in execute
-    screen gallery():
-  File "game/screens.rpy", line 1672, in execute
-    screen gallery():
-  File "game/screens.rpy", line 1674, in execute
-    use game_menu(_("Gallery"), scroll="viewport"):
-  File "game/screens.rpy", line 466, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 466, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-  File "game/screens.rpy", line 475, in execute
-    frame:
-  File "game/screens.rpy", line 478, in execute
-    hbox:
-  File "game/screens.rpy", line 484, in execute
-    frame:
-  File "game/screens.rpy", line 487, in execute
-    if scroll == "viewport":
-  File "game/screens.rpy", line 489, in execute
-    viewport:
-  File "game/screens.rpy", line 498, in execute
-    vbox:
-  File "game/screens.rpy", line 501, in execute
-    transclude
-  File "game/screens.rpy", line 1674, in execute
-    use game_menu(_("Gallery"), scroll="viewport"):
-  File "game/screens.rpy", line 1675, in execute
-    vbox:
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/text/text.py", line 2177, in _scope
-    return self.set_text(self.text_parameter, scope, self.substitute, update)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/text/text.py", line 2216, in set_text
-    i, did_sub = renpy.substitutions.substitute(i, scope, substitute) # type: ignore
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 373, in substitute
-    s = interpolate(s, variables) # type: ignore
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 86, in interpolate
-    raise e
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/substitutions.py", line 78, in interpolate
-    value = renpy.python.py_eval(code, {}, scope)
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1216, in py_eval
-    code = py_compile(code, 'eval')
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1153, in py_compile
-    raise e
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1090, in py_compile
-    raise orig_e
-  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/python.py", line 1082, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
-SyntaxError: invalid syntax (<none>, line 1)
+  File "renpy/common/00start.rpy", line 196, in <module>
+    renpy.execute_default_statement(True)
+  File "/Users/mfaiq/Downloads/renpy-8.3.7-sdk/renpy/exports/statementexports.py", line 372, in execute_default_statement
+    i.execute_default(start)
+  File "game/screens.rpy", line 294, in execute_default
+    default quick_menu = True
+Exception: store.quick_menu is being given a default a second time.
 
 macOS-15.5-arm64-arm-64bit arm64
 Ren'Py 8.3.7.25031702
 Game Jam 1.0
-Sun Jun  8 10:16:09 2025
+Sun Jun  8 10:51:11 2025

@@ -9,6 +9,28 @@ init offset = -1
 ## Styles
 ################################################################################
 
+# Custom style for main menu buttons that rely on an image mapAdd commentMore actions
+style start_button:
+    # Set text color to fully transparent if your text is on the background image
+    color "#00000000"
+    hover_color "#00000000"
+    selected_color "#00000000"
+    insensitive_color "#00000000"
+
+    # Make the button background completely invisible
+    background None
+    hover_background None
+    selected_background None
+    insensitive_background None
+    idle_background None
+
+    # Align text in the center of the hotspot area (relevant if text is visible)
+    xalign 0.5
+    yalign 0.5
+    font gui.button_text_font
+    size gui.button_text_size
+#Add comment
+
 style default:
     properties gui.text_properties()
     language gui.language
@@ -67,8 +89,8 @@ style slider:
 
 style vslider:
     xsize gui.slider_size
-    base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
-    thumb "gui/slider/vertical_[prefix_]thumb.png"
+    base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, 
+    tile=gui.vslider_tile)
 
 
 style frame:
@@ -214,7 +236,14 @@ screen choice(items):
 
 style choice_vbox is vbox
 style choice_button is button
-style choice_button_text is button_text
+style choice_button_text:
+    color gui.choice_button_text_idle_color
+    hover_color gui.choice_button_text_hover_color
+    selected_color gui.choice_button_text_hover_color
+    insensitive_color gui.choice_button_text_insensitive_color
+    outlines gui.button_text_outlines
+    kerning gui.button_text_kerning
+    xalign 0.5
 
 style choice_vbox:
     xalign 0.5
@@ -243,19 +272,40 @@ screen quick_menu():
     if quick_menu:
 
         hbox:
-            style_prefix "quick"
+            style_prefix "standard"
 
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Back") style "quick_button" action Rollback()
+
+            # textbutton _("History") 
+            #     style "quick_button"
+            #     action ShowMenu('history')
+
+            # textbutton _("Skip") 
+            #     style "quick_button"
+            #     action Skip() alternate Skip(fast=True, confirm=True)
+
+            # textbutton _("Auto") 
+            #     style "quick_button"
+            #     action Preference("auto-forward", "toggle")
+
+            # textbutton _("Save") 
+            #     style "quick_button"
+            #     action ShowMenu('save')
+
+            # textbutton _("Q.Save") 
+            #     style "quick_button"
+            #     action QuickSave()
+
+            # textbutton _("Q.Load") 
+            #     style "quick_button"
+            #     action QuickLoad()
+
+            # textbutton _("Prefs") 
+            #     style "quick_button"
+            #     action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
