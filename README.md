@@ -30,14 +30,57 @@ This project is the result of international teamwork between students and facult
    ```
 
 2. **Setup Instructions**
-   _(Add specific setup instructions based on your development environment)_
+   
+   a. Install Ren'Py SDK (version 7.5.3 or later)
+      - Download from: https://www.renpy.org/latest.html
+      - Follow the installation instructions for your operating system
+   
+   b. Install Python 3.7 or later (required for Ren'Py)
+      - Download from: https://www.python.org/downloads/
+      - Make sure to check "Add Python to PATH" during installation
+   
+   c. Clone the repository and navigate to the project directory
+      ```bash
+      git clone https://github.com/cronenberg64/GameJam.git
+      cd GameJam/Game\ Jam/game
+      ```
 
 3. **Running the Game**
-   _(Add instructions for running the game)_
+
+   a. Using Ren'Py Launcher:
+      - Open Ren'Py Launcher
+      - Click "Add Project"
+      - Navigate to and select the `game` directory
+      - Click "Launch Project" to start the game
+
+   b. Direct Launch (Windows):
+      - Navigate to the game directory
+      - Double-click `山の初恋.exe`
+
+   c. Direct Launch (macOS/Linux):
+      - Navigate to the game directory
+      - Run `./山の初恋.sh` (Linux) or `./山の初恋.app` (macOS)
 
 ### Development Environment
 
-_(Add information about the tools, engines, or frameworks used)_
+This project is built using:
+- **Ren'Py Engine** (version 7.5.3)
+  - A visual novel engine that uses Python and its own scripting language
+  - Provides built-in support for visual novel features like dialogue, choices, and character sprites
+  
+- **Python** (version 3.7+)
+  - Used for custom scripting and game logic
+  - Required for Ren'Py development
+
+- **Development Tools**:
+  - Visual Studio Code (recommended IDE)
+  - Ren'Py SDK (for development and testing)
+  - Git (for version control)
+
+- **Asset Creation**:
+  - Image editing software (e.g., Photoshop, GIMP)
+  - Audio editing software (e.g., Audacity)
+  - Text editor for script writing
 
 ## Contributing
 
@@ -50,13 +93,15 @@ This project is part of an academic collaboration. If you're part of the partici
 
 ## Game Jam Details
 
-- **Theme**: First Love / Mountain Setting
-- **Duration**: _(Add jam duration)_
-- **Development Period**: _(Add development timeline)_
+- **Theme**: Dating Simulator, visual novel
+- **Duration**: June 7, 2025 - June 8, 2025
 
 ## Screenshots
 
-_(Add screenshots of the game when available)_
+![Main Menu Scene](game/screenshots/Screenshot%202025-06-08%20at%2015.13.38.png)
+![Gameplay Scene 1](game/screenshots/Screenshot%202025-06-08%20at%2015.14.14.png)
+![Gameplay Scene 2](game/screenshots/Screenshot%202025-06-08%20at%2015.14.33.png)
+![Gameplay Scene 3](game/screenshots/Screenshot%202025-06-08%20at%2015.15.03.png)
 
 ## Credits
 
@@ -68,11 +113,25 @@ _(Add screenshots of the game when available)_
 
 ### Team Members
 
-_(Add team member names and roles)_
+ Game Development
+  - Game Mechanics: Faiq and Jonathan
+  - Game Design: Faiq and Jonathan
+  - Game Logic: Faiq and Jonathan
+  - Story: Faiq
+  - GUI: Jonathan
+
+  Arts & Graphics
+  - Illustrator: Ren
+  - Background elements: itch.io
+
+  Music & Sounds
+  - SFX & Background Music: Chad
+  - Character Voices: Ren and Chad
+
 
 ## License
 
-_(Add license information)_
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
