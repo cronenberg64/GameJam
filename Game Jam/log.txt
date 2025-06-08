@@ -1,18 +1,17 @@
-2025-06-08 05:46:07 UTC
+2025-06-08 05:50:40 UTC
 macOS-15.5-arm64-arm-64bit
 Ren'Py 8.3.7.25031702
 
 Early init took 0.04s
-Loading error handling took 0.03s
-Loading script took 0.17s
-Loading save slot metadata took 0.03s
+Loading error handling took 0.04s
+Loading script took 0.53s
+Loading save slot metadata took 0.02s
 Loading persistent took 0.00s
-Running init code took 0.03s
+Running init code took 0.04s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.02s
+Reloading save slot metadata took 0.01s
 Index archives took 0.00s
-Backing up script files to '/Users/mfaiq/Library/RenPy/backups/Game Jam':
 Dump and make backups took 0.00s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
@@ -26,7 +25,7 @@ Load screen analysis took 0.00s
 Analyze screens took 0.01s
 Save screen analysis took 0.01s
 Prepare screens took 0.03s
-Save pyanalysis. took 0.00s
+Save pyanalysis. took 0.01s
 Save bytecode. took 0.02s
 Running _start took 0.00s
 Interface start took 2.78s
