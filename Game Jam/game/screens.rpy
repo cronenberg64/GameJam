@@ -297,14 +297,17 @@ screen navigation():
             textbutton _("Start") action Start()
 
         else:
+            textbutton _("Options") action ShowMenu("preferences")
+
+            textbutton _("Gallery") action ShowMenu("gallery")
 
             textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+            textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+            textbutton _("Preferences") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -314,7 +317,7 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+            textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -859,14 +862,14 @@ style pref_vbox is vbox
 
 style radio_label is pref_label
 style radio_label_text is pref_label_text
-style radio_button is gui_button
-style radio_button_text is gui_button_text
+style radio_button is choice_button
+style radio_button_text is choice_button_text
 style radio_vbox is pref_vbox
 
 style check_label is pref_label
 style check_label_text is pref_label_text
-style check_button is gui_button
-style check_button_text is gui_button_text
+style check_button is choice_button
+style check_button_text is choice_button_text
 style check_vbox is pref_vbox
 
 style slider_label is pref_label
@@ -894,7 +897,7 @@ style radio_vbox:
 
 style radio_button:
     properties gui.button_properties("radio_button")
-    foreground "gui/button/radio_[prefix_]foreground.png"
+    foreground "gui/button/gallerybutton1[prefix_]_idle.png" 
 
 style radio_button_text:
     properties gui.text_properties("radio_button")
@@ -904,7 +907,7 @@ style check_vbox:
 
 style check_button:
     properties gui.button_properties("check_button")
-    foreground "gui/button/check_[prefix_]foreground.png"
+    foreground "gui/button/gallerybutton2_[prefix_]idle.png"
 
 style check_button_text:
     properties gui.text_properties("check_button")
@@ -1664,3 +1667,31 @@ style default:
     language gui.language
 
 style input
+
+# Gallery Screen
+screen gallery():
+    tag menu
+    use game_menu(_("Gallery"), scroll="viewport"):
+        vbox:
+            spacing 40
+            text "Gallery" style "game_menu_label"
+            # Placeholder for gallery images
+            hbox:
+                spacing 30
+                # Example placeholders for images
+                frame:
+                    xsize 300
+                    ysize 200
+                    text "Image 1" xalign 0.5 yalign 0.5
+                frame:
+                    xsize 300
+                    ysize 200
+                    text "Image 2" xalign 0.5 yalign 0.5
+                frame:
+                    xsize 300
+                    ysize 200
+                    text "Image 3" xalign 0.5 yalign 0.5
+            # Add more frames as needed for additional images
+        textbutton _("Return"):
+            style "return_button"
+            action Return()

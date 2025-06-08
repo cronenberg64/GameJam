@@ -77,6 +77,7 @@ label akagi_path:
     narrator "The trail is well-marked, but something feels different about this place."
     narrator "After hiking for an hour, you spot an old wooden cabin through the trees."
     
+    play sound "assets/music/sfx/door_open.mp3" fadein 1.0
     scene bg cabin
     narrator "The cabin looks abandoned but well-preserved, as if someone left just yesterday."
     narrator "The door creaks open at your touch, revealing a simple interior with just a couch and an old television."
@@ -86,11 +87,14 @@ label akagi_path:
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            play sound "assets/music/sfx/tv_on.mp3" fadein 1.0
             stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            play sound "assets/music/sfx/door_open.mp3" fadein 1.0
+            play sound "assets/music/sfx/door_shut.mp3" fadein 1.0 fadeout 1.0
             stop music fadeout 1.0
             jump cave_encounter
 
@@ -111,18 +115,21 @@ label oeyama_path:
         
         "Turn on the television":
             $ cabin_choice = "tv"
+            play sound "assets/music/sfx/tv_on.mp3" fadein 1.0 loop
             stop music fadeout 1.0
             jump tv_encounter
             
         "Leave the cabin and continue exploring":
             $ cabin_choice = "explore"
+            play sound "assets/music/sfx/door_open.mp3" fadein 1.0
+            play sound "assets/music/sfx/door_shut.mp3" fadein 1.0 fadeout 1.0
             stop music fadeout 1.0
             jump weather_encounter
 
 # TV Encounter - leads to Sadako route
 label tv_encounter:
     scene bg tv_static
-    play sound "tv_static.wav"
+    play sound "assets/music/sfx/tv_stat.mp3" fadein 1.0 loop
     
     narrator "The old television flickers to life with a burst of static."
     narrator "Through the white noise, a shadowy figure begins to take shape."
@@ -135,15 +142,15 @@ label tv_encounter:
     
     # Determine which character appears based on mountain choice
     if mountain_choice == "akagi":
-        stop music fadeout 1.0
+        stop sound fadeout 1.0
         jump sadako_route
     else:
-        stop music fadeout 1.0
+        stop sound fadeout 1.0
         jump oni_route
 
 # Cave/Weather Encounter
 label cave_encounter:
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
+    play music "assets/music/bg/haunting_piano.mp3" fadein 1.0 loop #change
     scene bg forest
     narrator "You leave the cabin behind and continue deeper into Akagi Mountain."
     narrator "The path becomes steeper, and you notice the temperature dropping."
@@ -161,7 +168,7 @@ label cave_encounter:
     jump yuki_route
 
 label weather_encounter:
-    play music "assets/music/bg/ambient_forest.mp3" fadein 1.0 loop #change
+    play music "assets/music/bg/haunting_piano.mp3" fadein 1.0 loop #change
     scene bg forest
     narrator "You decide to continue exploring Oeyama Mountain."
     narrator "Suddenly, the sunny sky darkens, and snow begins to fall despite it being summer."
@@ -264,6 +271,7 @@ label sadako_route:
     show sadako neutral
     with fade
     
+    play sound "assets/music/sfx/tv_stat.mp3" fadein 1.0 fadeout 2.0
     play music "assets/music/bg/haunting_piano.mp3" fadein 1.0 loop
     
     narrator "The television's static clears to reveal a dark, otherworldly realm."
@@ -502,6 +510,8 @@ label yuki_marriage:
     scene bg cave
     show yuki neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" fadein 1.0 loop
     
     YukiOnna "I've found a way to open a portal to your world."
     YukiOnna "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -538,6 +548,8 @@ label yuki_death:
     scene bg cave
     show yuki scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" fadein 1.0 loop
     
     YukiOnna "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     YukiOnna "The demon lords will decide your fate."
@@ -564,6 +576,8 @@ label sadako_marriage:
     scene bg cabin
     show sadako neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" fadein 1.0 loop
     
     Sadako "I've found a way to open a portal to your world."
     Sadako "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -600,6 +614,8 @@ label sadako_death:
     scene bg cabin
     show sadako scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" fadein 1.0 loop
     
     Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Sadako "The demon lords will decide your fate."
@@ -626,6 +642,8 @@ label oni_marriage:
     scene bg cabin
     show oni neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" fadein 1.0 loop
     
     Oni "I've found a way to open a portal to your world."
     Oni "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -662,6 +680,8 @@ label oni_death:
     scene bg cabin
     show oni scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" fadein 1.0 loop
     
     Oni "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Oni "The demon lords will decide your fate."
@@ -688,6 +708,8 @@ label kitsune_marriage:
     scene bg cabin
     show kitsune neutral
     with fade
+
+    play music "assets/music/bg/happy_ending.mp3" fadein 1.0 loop
     
     Kitsune "I've found a way to open a portal to your world."
     Kitsune "But I can't stay here anymore. The demon lords will hunt me for helping you."
@@ -724,6 +746,8 @@ label kitsune_death:
     scene bg cabin
     show kitsune scary
     with fade
+
+    play music "assets/music/bg/bad_ending.mp3" fadein 1.0 loop
     
     Kitsune "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Kitsune "The demon lords will decide your fate."
@@ -750,7 +774,7 @@ label neutral_ending:
     scene bg forest
     with fade
     
-    play music "assets/music/bg/ambient_forest.mp3" fadein 2.0 loop #change
+    play music "assets/music/bg/neutral_ending.mp3" fadein 2.0 loop #change
     
     narrator "You make your way back down the mountain, the strange encounters fading like a dream."
     narrator "The sun is beginning to set, casting long shadows through the trees."

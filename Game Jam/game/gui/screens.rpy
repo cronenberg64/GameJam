@@ -839,14 +839,14 @@ style pref_vbox is vbox
 
 style radio_label is pref_label
 style radio_label_text is pref_label_text
-style radio_button is gui_button
-style radio_button_text is gui_button_text
+style radio_button is choice_button
+style radio_button_text is choice_button_text
 style radio_vbox is pref_vbox
 
 style check_label is pref_label
 style check_label_text is pref_label_text
-style check_button is gui_button
-style check_button_text is gui_button_text
+style check_button is choice_button
+style check_button_text is choice_button_text
 style check_vbox is pref_vbox
 
 style slider_label is pref_label
@@ -874,7 +874,6 @@ style radio_vbox:
 
 style radio_button:
     properties gui.button_properties("radio_button")
-    foreground "gui/button/radio_[prefix_]foreground.png"
 
 style radio_button_text:
     properties gui.text_properties("radio_button")
@@ -884,7 +883,6 @@ style check_vbox:
 
 style check_button:
     properties gui.button_properties("check_button")
-    foreground "gui/button/check_[prefix_]foreground.png"
 
 style check_button_text:
     properties gui.text_properties("check_button")
