@@ -75,12 +75,10 @@ This project is built using:
 - **Development Tools**:
   - Visual Studio Code (recommended IDE)
   - Ren'Py SDK (for development and testing)
-  - Git (for version control)
+  - GitHub Desktop (for version control and better interface)
 
 - **Asset Creation**:
-  - Image editing software (e.g., Photoshop, GIMP)
-  - Audio editing software (e.g., Audacity)
-  - Text editor for script writing
+  - Image editing software (IBIS paint)
 
 ## Contributing
 
