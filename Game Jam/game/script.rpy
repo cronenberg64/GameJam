@@ -87,7 +87,7 @@ label akagi_path:
     narrator "The trail is well-marked, but something feels different about this place."
     narrator "After hiking for an hour, you spot an old wooden cabin through the trees."
     
-    play sound "assets/music/sfx/door_open.mp3"
+    play sound "assets/music/sfx/door_open.mp3" fadein 1.0
     scene bg tv at bg_transform
     narrator "The cabin looks abandoned but well-preserved, as if someone left just yesterday."
     narrator "The door creaks open at your touch, revealing a warm interior with low wooden table, woven floor cushion, and a vintage television."
@@ -154,6 +154,10 @@ label tv_encounter:
         stop sound fadeout 1.0
         jump sadako_route
     else:
+        narrator "The old television flickers to life with a burst of static."
+        narrator "The screen dances with chaotic white noise as the ancient CRT hums with electrical energy."
+        narrator "Suddenly, your vision becomes blurry and the room starts to spin around you, consciousness slipping away like sand through your fingers."
+        
         scene bg black
         with fade
         
