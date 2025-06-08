@@ -33,7 +33,7 @@ transform bg_transform:
 image bg room = "assets/illustrations/bg/myroom.png"
 image bg forest = "assets/illustrations/bg/forest_1.jpg"
 image bg tv = "assets/illustrations/bg/cabin_2.png"
-image bg cave = "assets/illustrations/bg/cave.png" ###
+image bg cave = "assets/illustrations/bg/cave.jpg" ###
 image bg snowy_path = "assets/illustrations/bg/snow_path.png"
 image bg spirit = "assets/illustrations/bg/spirit_2.png"
 image bg cabin_oni = "assets/illustrations/bg/cabin_oni.png"

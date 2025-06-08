@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 282: 'action' is not a keyword argument or valid child of the hbox statement.
-    action Rollback()
-          ^
+File "game/screens.rpy", line 601: style property at is not known.
+    at game_menu_transform
+      ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Sun Jun  8 12:46:31 2025
+Sun Jun  8 13:01:44 2025
