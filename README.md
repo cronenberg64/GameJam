@@ -1,8 +1,8 @@
-# 山の初恋 (Mountain's First Love)
+# 山の初恋
 
 ## Overview
 
-"山の初恋" (Yama no Hatsukoi / Mountain's First Love) is a game developed as part of an international game jam collaboration between:
+"山の初恋" (Yama no Hatsukoi) is a game developed as part of an international game jam collaboration between:
 
 - **Ritsumeikan University** (Japan)
 - **Kansai University** (Japan)
@@ -98,10 +98,10 @@ This project is part of an academic collaboration. If you're part of the partici
 
 ## Screenshots
 
-![Main Menu Scene](Game Jam/game/screenshots/Screenshot%202025-06-08%20at%2015.13.38.png)
-![Gameplay Scene 1](Game Jam/game/screenshots/Screenshot%202025-06-08%20at%2015.14.14.png)
-![Gameplay Scene 2](Game Jam/game/screenshots/Screenshot%202025-06-08%20at%2015.14.33.png)
-![Gameplay Scene 3](Game Jam/game/screenshots/Screenshot%202025-06-08%20at%2015.15.03.png)
+![Main Menu Scene](/game/screenshots/Screenshot%202025-06-08%20at%2015.13.38.png)
+![Gameplay Scene 1](/game/screenshots/Screenshot%202025-06-08%20at%2015.14.14.png)
+![Gameplay Scene 2](/game/screenshots/Screenshot%202025-06-08%20at%2015.14.33.png)
+![Gameplay Scene 3](/game/screenshots/Screenshot%202025-06-08%20at%2015.15.03.png)
 
 ## Credits
 
