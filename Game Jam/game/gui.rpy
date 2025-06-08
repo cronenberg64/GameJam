@@ -104,12 +104,12 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#B8860B'  # Dark goldenrod - supernatural theme
-define gui.choice_button_text_hover_color = "#FFD700"  # Gold - bright contrast on hover
+define gui.choice_button_text_idle_color = '#fff7d6'  # Light cream for readability
+define gui.choice_button_text_hover_color = '#000000'  # Lighter cream on hover
 define gui.choice_button_text_insensitive_color = '#7070707f'
 ## New background colors for better contrast
-define gui.choice_button_idle_background = "#1C1C1C"  # Very dark grey - mysterious
-define gui.choice_button_hover_background = "#2F2F2F"  # Slightly lighter dark on hover
+define gui.choice_button_idle_background = '#7c4a03'  # Dark brown
+define gui.choice_button_hover_background = '#a86c1d'  # Lighter brown
 
 ## File Slot Buttons ###########################################################
 define gui.slot_button_width = 414

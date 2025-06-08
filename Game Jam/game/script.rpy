@@ -797,24 +797,24 @@ label credit:
     scene bg black
     with fade
     
-    centered "CREDITS{w=2.0}{nw}"
-    centered "Game Development{w=1.0}{nw}"
-    centered "Game Mechanics: Faiq and Jonathan{w=1.0}{nw}"
-    centered "Story: Faiq{w=1.0}{nw}"
-    centered "GUI: Jonathan{w=1.0}{nw}"
+    centered "{color=#ffffff}CREDITS{/color}{w=2.0}{nw}"
+    centered "{color=#ffffff}Game Development{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Game Mechanics: Faiq and Jonathan{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Story: Faiq{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}GUI: Jonathan{/color}{w=1.0}{nw}"
     
-    centered "Art & Graphics{w=1.0}{nw}"
-    centered "Illustrator: Ren{w=1.0}{nw}"
+    centered "{color=#ffffff}Art & Graphics{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Illustrator: Ren{/color}{w=1.0}{nw}"
     
-    centered "Music & Sound{w=1.0}{nw}"
-    centered "SFX & Background Music: Chad{w=1.0}{nw}"
+    centered "{color=#ffffff}Music & Sound{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}SFX & Background Music: Chad{/color}{w=1.0}{nw}"
     
-    centered "Special Thanks{w=1.0}{nw}"
-    centered "Ren'Py Engine{w=1.0}{nw}"
-    centered "All our team members{w=1.0}{nw}"
-    centered "And you, for playing our game!{w=2.0}{nw}"
+    centered "{color=#ffffff}Special Thanks{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Ren'Py Engine{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}All our team members{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}And you, for playing our game!{/color}{w=2.0}{nw}"
 
-    centered "Third-Party Sources{w=1.0}{nw}"
-    centered "Musics{w=1.0}{nw}"
+    centered "{color=#ffffff}Third-Party Sources{/color}{w=1.0}{nw}"
+    centered "{color=#ffffff}Musics{/color}{w=1.0}{nw}"
     
     return
