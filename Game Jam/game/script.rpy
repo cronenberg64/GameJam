@@ -678,7 +678,7 @@ label sadako_death:
     Sadako "I'm sorry, but I can't risk my position for someone who doesn't trust me."
     Sadako "The demon lords will decide your fate."
 
-    show yuki scary
+    show sadako scary
     
     narrator "She leads you deeper into the cave, her hand cold against yours."
     narrator "A television static can be heard as you enter a secluded area."
